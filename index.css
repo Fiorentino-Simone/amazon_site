@@ -1,0 +1,45 @@
+body{
+  padding: 0;
+  margin: 0;
+  background-color: #eaeded; 
+  height: 100%;
+  color: white !important;
+}
+
+html{
+  scroll-behavior: smooth !important; /*per inserire una transizione delicata*/
+}
+
+.navbar{
+  background-color: #131921;
+  height: 8%;
+  position: relative;
+}
+
+.navbar-brand{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container div button{
+  color: white !important;
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  font-weight: bold;
+  width: max-content;
+}
+
+.container div i{
+  position: absolute;
+  left: 9.5%;
+  top: 45%;
+}
+
+.container div div{
+  color: white !important;
+  position: absolute;
+  left: 10.8%;
+  top: 10%;
+}
