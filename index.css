@@ -3,7 +3,6 @@ body{
   margin: 0;
   background-color: #eaeded; 
   height: 100%;
-  color: white !important;
 }
 
 html{
@@ -12,34 +11,96 @@ html{
 
 .navbar{
   background-color: #131921;
-  height: 8%;
+  display: grid;
+  height: 12%;
+  padding: 0;
+}
+
+.buttonHeader{
   position: relative;
+  top: 0%;
+  text-decoration: none;
+  padding-right: 20%;
 }
 
-.navbar-brand{
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.container div button{
-  color: white !important;
-  position: absolute;
-  left: 10%;
-  top: 30%;
-  font-weight: bold;
+.buttonHeader div:first-of-type{
+  display: grid;
+  position: relative;
+  top: -15%;
+  left: 15%;
   width: max-content;
 }
 
-.container div i{
-  position: absolute;
-  left: 9.5%;
-  top: 45%;
+.buttonHeader i{
+  position: relative; 
+  top: 50%;
 }
 
-.container div div{
+.insertText .dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.w{
   color: white !important;
-  position: absolute;
-  left: 10.8%;
-  top: 10%;
+}
+
+.insertText{
+  position: relative;
+  left: 4%;
+}
+
+.buttonAccedi{
+  position: relative;
+  top: 0%;
+  text-decoration: none;
+  left: 60%;
+  padding: 10px;
+}
+
+.buttonAccedi div:first-of-type{
+  display: grid;
+  position: relative;
+  width: max-content;
+}
+
+.buttonOrdini{
+  position: relative;
+  top: 0%;
+  text-decoration: none;
+  left: 120%;
+  padding: 10px;
+}
+
+.buttonOrdini div:first-of-type{
+  display: grid;
+  position: relative;
+  width: max-content;
+}
+
+.buttonCarrello{
+  position: relative;
+  top: 0%;
+  text-decoration: none;
+  left: 150%;
+  padding-right: 60%;
+}
+
+.buttonCarrello div:first-of-type{
+  display: grid;
+  position: relative;
+  width: max-content;
+}
+
+.buttonCarrello div:first-of-type span:first-of-type{
+  position: relative;
+  left: 38%;
+  top: 80%;
+}
+
+.carrello{
+  position: relative;
+  left: 80%;
+  top: -30%;
 }

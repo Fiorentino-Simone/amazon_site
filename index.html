@@ -17,15 +17,86 @@
 <body>
 	<!--#region NAVBAR -->
 	<nav class="navbar">
-		<div class="container">
-		  <a class="navbar-brand" href="#">
-			<img src="img/logo.png" class="d-inline-block align-text-top">
-		  </a>
-		<div class="buttonHeader">
-		  <div>Ciao</div>
-		  <i class="bi bi-geo-alt"></i>
-		  <button class="btn" type="button">Scegli il tuo indirizzo</button>
-		</div> 
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">
+				<img src="img/logo.png" class="d-inline-block align-text-top">
+			</a>
+			<li class="nav-item d-flex">
+				<a class="buttonHeader">
+					<i class="bi bi-geo-alt w"></i>
+					<div>
+						<span class="w">Ciao</span>
+						<span style="font-weight: bold;" class="w">Scegli il tuo indirizzo</span>
+					</div>
+				</a> 
+			</li>
+			<li class="nav-item d-flex insertText">
+				<div class="input-group">
+					<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Tutte le categorie</button>
+					<ul class="dropdown-menu">
+					  <li><a class="dropdown-item" href="#">Tutte le categorie</a></li>
+					  <li><a class="dropdown-item" href="#">Abbigliamento</a></li>
+					  <li><a class="dropdown-item" href="#">Alexa Skill</a></li>
+					  <li><a class="dropdown-item" href="#">Alimentazione e cura della casa</a></li>
+					  <li><a class="dropdown-item" href="#">Amazon Fresh</a></li>
+					  <li><a class="dropdown-item" href="#">Amazon Global Store</a></li>
+					  <li><a class="dropdown-item" href="#">Amazon Warehouse</a></li>
+					  <li><a class="dropdown-item" href="#">App e Giochi</a></li>
+					  <li><a class="dropdown-item" href="#">Audiolibri Audible</a></li>
+					  <li><a class="dropdown-item" href="#">Auto e Moto - Parti e Accessori</a></li>
+					  <li><a class="dropdown-item" href="#">Bellezza</a></li>
+					  <li><a class="dropdown-item" href="#">Buoni regalo</a></li>
+					  <li><a class="dropdown-item" href="#">Cancelleria e prodotti per ufficio</a></li>
+					  <li><a class="dropdown-item" href="#">Casa e cucina</a></li>
+					  <li><a class="dropdown-item" href="#">CD e vinili</a></li>
+					  <li><a class="dropdown-item" href="#">Dispositivi Amazon</a></li>
+					  <li><a class="dropdown-item" href="#">Elettronica</a></li>
+					  <li><a class="dropdown-item" href="#">Fai da te</a></li>
+					  <li><a class="dropdown-item" href="#">Film e TV</a></li>
+					  <li><a class="dropdown-item" href="#">Giardino e giardinaggio</a></li>
+					  <li><a class="dropdown-item" href="#">Giochi e giocattoli</a></li>
+					  <li><a class="dropdown-item" href="#">Gioielli</a></li>
+					  <li><a class="dropdown-item" href="#">Grandi elettrodomestici</a></li>
+					  <li><a class="dropdown-item" href="#">Handmade</a></li>
+					  <li><a class="dropdown-item" href="#">Illuminazione</a></li>
+					  <li><a class="dropdown-item" href="#">Industria e Scienza</a></li>
+					  <li><a class="dropdown-item" href="#">Informatica</a></li>
+					  <li><a class="dropdown-item" href="#">Libri</a></li>
+					  <li><a class="dropdown-item" href="#">Moda</a></li>
+					  <li><a class="dropdown-item" href="#">Musica Digitale</a></li>
+					  <li><a class="dropdown-item" href="#">Orologi</a></li>
+					  <li><a class="dropdown-item" href="#">Prima Infanzia</a></li>
+					  <li><a class="dropdown-item" href="#">Videogiochi</a></li>
+					</ul>
+					<input type="text" class="form-control" aria-label="Text input with dropdown button" style = "width: 30rem;">
+					<button class="btn bi bi-search" style="background-color: #febd69;" type="button"></button>
+				</div>
+			</li>
+			<li class="nav-item d-flex">
+				<a class="buttonAccedi">
+					<div>
+						<span class="w">Ciao, Accedi</span>
+						<span style="font-weight: bold;" class="w">Account e liste</span>
+					</div>
+				</a> 
+			</li>
+			<li class="nav-item d-flex">
+				<a class="buttonOrdini">
+					<div>
+						<span class="w">Resi</span>
+						<span style="font-weight: bold;" class="w">e Ordini</span>
+					</div>
+				</a> 
+			</li>
+			<li class="nav-item d-flex">
+				<a class="buttonCarrello">
+					<div>
+						<span style="color: #f08804; font-weight: bold;">0</span>
+						<img src="img/carrello.png" style="width: 80%; height: 90%;" class="d-inline-block align-text-top">
+					</div>
+					<span style="font-weight: bold;" class="w carrello">Carrello</span>
+				</a> 
+			</li>
 		</div>
 	</nav>
 			
