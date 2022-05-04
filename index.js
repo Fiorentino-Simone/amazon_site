@@ -1,10 +1,15 @@
 "use strict";
 
 $(document).ready(function(){
-    $(".buttonHeader, .buttonAccedi, .buttonOrdini, .buttonCarrello").on("mouseenter",function(){
+    let button = `.buttonHeader, 
+    .buttonAccedi, 
+    .buttonOrdini,
+    .buttonCarrello,
+    .buttonAll`;
+    $(button).on("mouseenter",function(){
         $(this).css("border","1px solid white");
     });
-    $(".buttonHeader, .buttonAccedi, .buttonOrdini, .buttonCarrello").on("mouseleave",function(){
+    $(button).on("mouseleave",function(){
         $(this).css("border","");
     });
 
@@ -12,4 +17,20 @@ $(document).ready(function(){
     function(){
         $(this).show();
     });
+
+    /*
+    .buttonBestSeller,
+    .buttonAmazonBasic,
+    .buttonClienti,
+    .buttonOfferte,
+    .buttonNovita,
+    .buttonPrime,
+    .buttonMusic,
+    .buttonModa,
+    .buttonLibri,
+    .buttonVideogiochi,
+    .buttonElettronica,
+    .buttonCucina
+
+    DA CORRREGGERE IL BORDER*/
 });

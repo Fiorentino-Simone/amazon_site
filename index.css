@@ -9,10 +9,13 @@ html{
   scroll-behavior: smooth !important; /*per inserire una transizione delicata*/
 }
 
+a{
+  text-decoration: none !important;
+}
+
 .navbar{
   background-color: #131921;
   display: grid;
-  height: 12%;
   padding: 0;
 }
 
@@ -103,4 +106,92 @@ html{
   position: relative;
   left: 80%;
   top: -30%;
+}
+
+
+
+.navbarSecondaria{
+  background-color: #242c3f;
+  display: grid;
+}
+
+.buttonAll{
+  position: relative;
+  top: 0%;
+  text-decoration: none;
+  padding-right: 2%;
+}
+
+.buttonAll i{
+  position: relative;
+  top: 30%;
+  text-decoration: none;
+}
+
+.buttonAll i div{
+  position: relative;
+  top: -55%;
+  left: 50%;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.buttonBestSeller div,
+.buttonAmazonBasic div,
+.buttonClienti div,
+.buttonOfferte div,
+.buttonNovita div,
+.buttonPrime div,
+.buttonMusic div,
+.buttonModa div,
+.buttonLibri div,
+.buttonVideogiochi div,
+.buttonElettronica div,
+.buttonCucina div{
+  position: relative;
+  top: 18%;
+  font-style: normal;
+}
+
+.buttonBestSeller div{
+  left: 20%;
+}
+
+.buttonAmazonBasic div{
+  left: 35%;
+}
+
+.buttonClienti div{
+  left: 50%;
+}
+
+.buttonOfferte div{
+  left: 130%;
+}
+
+.buttonNovita div{
+  left: 180%;
+}
+
+.buttonPrime div{
+  left: 250%;
+}
+.buttonMusic div{
+  left: 250%;
+}
+.buttonModa div{
+  left: 350%;
+}
+.buttonLibri div{
+  left: 550%;
+}
+.buttonVideogiochi div{
+  left: 220%;
+}
+.buttonElettronica div{
+  left: 270%;
+}
+.buttonCucina div{
+  left: 230%;
 }
