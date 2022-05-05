@@ -198,3 +198,8 @@ a{
 .buttonCucina div{
   left: 230%;
 }
+
+.carousel-control-prev, 
+.carousel-control-next{
+  bottom: 60% !important;
+}
