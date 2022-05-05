@@ -13,6 +13,7 @@ a{
   text-decoration: none !important;
 }
 
+/*#region NAVBAR PRINCIPALE*/
 .navbar{
   background-color: #131921;
   display: grid;
@@ -107,9 +108,10 @@ a{
   left: 80%;
   top: -30%;
 }
+/*#endregion*/
 
 
-
+/*#region NAVBAR SECONDARIA*/
 .navbarSecondaria{
   background-color: #242c3f;
   display: grid;
@@ -198,8 +200,53 @@ a{
 .buttonCucina div{
   left: 230%;
 }
+/*#endregion*/
 
+/*#region CAROUSEL*/
 .carousel-control-prev, 
 .carousel-control-next{
   bottom: 60% !important;
+}
+/*#endregion*/
+
+.wrapper{
+  position: relative;
+}
+
+.wrapper > div{
+  position: absolute;
+}
+
+.wrapper #carousel{
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.wrapper #cardsWrapper{
+  left: 6%;
+  top: 20rem;
+  z-index: 1;
+  width: 90%;
+}
+
+.wrapper #cardsWrapper2{
+  left: 6%;
+  top: 50rem;
+  z-index: 2;
+  width: 90%;
+}
+
+.card{
+  height: 100%;
+  
+}
+
+.card-title{
+  text-align: center;
+}
+
+.card img{
+  /*border: 1px solid red;*/
+
 }
