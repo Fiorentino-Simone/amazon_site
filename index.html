@@ -103,7 +103,7 @@
 	<nav class="navbarSecondaria">
 		<div class="container-fluid">
 			<li class="nav-item d-flex">
-				<a class="buttonAll">
+				<a class="buttonAll" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 					<i class="bi bi-list w"><div>Tutte</div></i>
 				</a> 
 				<a class="buttonBestSeller w">
@@ -146,6 +146,40 @@
 			
 		</div>
 	</nav>
+
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header" style="background-color: #232f3e">
+			<i class="fa-solid fa-user w"></i>
+		  	<h5 class="offcanvas-title w" id="offcanvasExampleLabel">Ciao, Accedi</h5>
+		  	<button type="button" class="btn-close light text-reset" style="background-color: white;" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+		  <h4 style="font-weight: bold;">Di tendenza</h4>
+		  <button class="btn" style="width: 100%; text-align: left;">Bestseller</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Novità</button>
+		  <button class="btn" style="width: 100%; text-align: left;">I prodotti del momento</button>
+		  <hr>
+		  <h4 style="font-weight: bold;">Dispositivi E Contenuti Digitali</h4>
+		  <button class="btn" style="width: 100%; text-align: left;">Amazon Prime Video</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Amazon Music</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Amazon Photos</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Echo e Alexa</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Amazon Fire TV</button>
+		  <button class="btn" style="width: 100%; text-align: left;">E-reader e eBook Kindle</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Audiolibri Audible</button>
+		  <hr>
+		  <h4 style="font-weight: bold;">Scegli per categoria</h4>
+		  <button class="btn" style="width: 100%; text-align: left;">Libri</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Musica, Film e TV</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Videogiochi e Console</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Elettronica e Informatica</button>
+		  <hr>
+		  <h4 style="font-weight: bold;">Aiuto e Impostazioni</h4>
+		  <button class="btn" style="width: 100%; text-align: left;">Il mio account</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Servizio clienti</button>
+		  <button class="btn" style="width: 100%; text-align: left;">Accedi</button>
+		</div>
+	</div>
 
 	<div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
 		<div class="carousel-inner">
