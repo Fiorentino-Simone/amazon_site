@@ -152,18 +152,21 @@ a{
   position: relative;
   top: 18%;
   font-style: normal;
+  padding-left: 5%;
+  width: max-content;
+  padding-right: 5%;
 }
 
 .buttonBestSeller div{
-  left: 20%;
+  left: 10%;
 }
 
 .buttonAmazonBasic div{
-  left: 35%;
+  left: 30%;
 }
 
 .buttonClienti div{
-  left: 50%;
+  left: 45%;
 }
 
 .buttonOfferte div{
