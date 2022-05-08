@@ -238,18 +238,19 @@ a{
   width: 90%;
 }
 
+.wrapper #cardsWrapper3{
+  left: 6%;
+  top: 80rem;
+  z-index: 3;
+  width: 90%;
+}
+
 .card{
-  height: 100%;
-  
+  height: 100%; 
 }
 
 .card-title{
   text-align: center;
-}
-
-.card img{
-  /*border: 1px solid red;*/
-
 }
 /*#endregion*/
 
@@ -306,7 +307,6 @@ footer p {
   margin:0 12px;
 }
 /*#endregion*/
-
 
 /*#region LOGIN AND REGISTER PAGE*/
 @import url("https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap");
@@ -385,15 +385,9 @@ footer p {
 .form-container .login-container .form-part .form-floating .form-control {
   background-color: #cccccc24;
 }
-.form-container .login-container .form-part .form-floating .form-control:hover {
-  border: 2px solid #0d6efd;
-  box-shadow: none;
-}
-.form-container .login-container .form-part .form-floating .form-control:focus {
-  border: 2px solid #0d6efd;
-  box-shadow: none;
-}
-.form-container .login-container .form-part .form-floating .form-control:active {
+.form-container .login-container .form-part .form-floating .form-control:hover,
+.form-container .login-container .form-part .form-floating .form-control:focus,
+.form-container .login-container .form-part .form-floating .form-control:active{
   border: 2px solid #0d6efd;
   box-shadow: none;
 }
@@ -409,6 +403,4 @@ footer p {
   position: absolute; 
   left: 35%; 
 }
-
-
 /*#endregion*/
