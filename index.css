@@ -398,10 +398,17 @@ footer p {
   box-shadow: none;
 }
 
-/*.form-floating label{
-  border: 1px solid red;
-  margin-left: 10%;
-}*/
+.icon-properties{
+  position: absolute;
+  left: -13%;
+  height: 100%;
+  width: 13%;
+}
+
+.icon-properties span{
+  position: absolute; 
+  left: 35%; 
+}
 
 
 /*#endregion*/

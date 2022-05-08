@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 	<meta http-equiv="content-type" content="text/html" />
-	<title> LOGIN AMAZON </title>
+	<title> REGISTRATI AMAZON </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--META TAG CHE MODIFICA LA VISUALIZZAZIONE-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -13,48 +13,59 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 	<link rel="stylesheet" href="index.css"/>
 </head>
-<body>
-    
+<body class="body">
   <div class="container-fluid form-container">
     <div class="container login-container">
       <div class="row">
-        <div class="col-md-5 content-part">  
-          <a href="index.html"><img src="img/Prime-Day.jpg"></a>
+        <div class="col-md-5 content-part">
+          <a href="index.html"><img src="img/Prime-Day.jpg" alt=""></a>  
           <h2 style="margin-top: 10%;">Amazon.it Spend less. Smile more.</h2>
           <p>Spedizione gratuita su milioni di articoli. Ottieni il meglio dallo shopping e dall'intrattenimento con Prime. Goditi prezzi bassi e grandi offerte sulla più ampia selezione di elementi essenziali di tutti i giorni e altri prodotti, tra cui moda, casa, bellezza, elettronica, dispositivi Alexa, articoli sportivi, giocattoli, automobili, animali domestici, bambini, libri, videogiochi, strumenti musicali, forniture per ufficio , e altro ancora.</p>
         </div>
         <div class="col-md-7 form-part">
           <div class="row">
-            <p class="signinlink">Se non possiedi un account Amazon <a href="registrati.html">Registrati</a></p>  
-            <div class="col-lg-8 col-md-11 login formcol mx-auto" style="margin-left: 20% !important; margin-top: 13% !important;">
-              <h3 style="margin-left: -10%;">Accedi al tuo account Amazon</h3>
+            <p class="signinlink">Ho gia un account Amazon <a href="login.html">Accedi</a></p>
+            <div class="col-lg-8 col-md-11 formcol mx-auto" style="margin-left: 20% !important;">
+              <h3 style="margin-left: -10%;">Registrati ad Amazon</h3>
               <form style="position: relative;">
                 <div class="form-floating mb-3">
-                  <span class="icon-properties input-group-text">
+                  <span class="input-group-text icon-properties">
+                    <span class="fa-solid fa-user-large"></span>
+                  </span>      
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Inserisci Nome e Cognome">
+                  <label for="floatingInput">Nome e Cognome</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <span class="input-group-text icon-properties">
+                    <span class="fa-solid fa-phone"></span>
+                  </span>    
+                  <input type="tel" class="form-control" id="floatingInput" placeholder="Inserisci il numero di telefono">
+                  <label for="floatingInput">Numero di telefono</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <span class="input-group-text icon-properties">
                     <span class="fa-solid fa-envelope"></span>
-                  </span>              
-                  <input type="email" class="form-control" id="floatingInput" placeholder="Inserisci il tuo indirizzo Email">
-                  <label for="floatingInput">Indirizzo Email</label>           
+                  </span>
+                  <input type="email" class="form-control" id="floatingInput" placeholder="Inserisci un Indirizzo Email">
+                  <label for="floatingInput">Indirizzo Email</label>
                 </div>
                 <div class="form-floating">
                   <span class="icon-properties input-group-text">
                     <span class="fa-solid fa-key"></span>
-                  </span>  
+                  </span> 
                   <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div class="form-floating">
-                  <button type="submit" class="btn btn-primary" style="width: 113%; position: absolute; left: -13%;">Accedi</button>
+                  <button type="submit" class="btn btn-primary" style="width: 113%; position: absolute; left: -13%;">Crea un account</button>
                 </div>
               </form>
             </div>
-          </div>    
+          </div>          
         </div>
       </div>
     </div>
   </div> 
-
-
 
     <!--#region SCRIPT -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
