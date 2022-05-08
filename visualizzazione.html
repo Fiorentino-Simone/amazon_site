@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html" />
+	<title> Abbigliamento: AMAZON </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--META TAG CHE MODIFICA LA VISUALIZZAZIONE-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+	<link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="visualizzazione.css"/>
+</head>
+<body style="background-color: #fff;">
+    
+    <!--#region NAVBAR -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" class="d-inline-block align-text-top">
+            </a>
+            <li class="nav-item d-flex">
+                <a class="buttonHeader">
+                    <i class="bi bi-geo-alt w"></i>
+                    <div>
+                        <span class="w">Ciao</span>
+                        <span style="font-weight: bold;" class="w">Scegli il tuo indirizzo</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex insertText">
+                <div class="input-group">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Tutte le categorie</button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Tutte le categorie</a></li>
+                    <li><a class="dropdown-item" href="#">Abbigliamento</a></li>
+                    <li><a class="dropdown-item" href="#">Alexa Skill</a></li>
+                    <li><a class="dropdown-item" href="#">Alimentazione e cura della casa</a></li>
+                    <li><a class="dropdown-item" href="#">Amazon Fresh</a></li>
+                    <li><a class="dropdown-item" href="#">Amazon Global Store</a></li>
+                    <li><a class="dropdown-item" href="#">Amazon Warehouse</a></li>
+                    <li><a class="dropdown-item" href="#">App e Giochi</a></li>
+                    <li><a class="dropdown-item" href="#">Audiolibri Audible</a></li>
+                    <li><a class="dropdown-item" href="#">Auto e Moto - Parti e Accessori</a></li>
+                    <li><a class="dropdown-item" href="#">Bellezza</a></li>
+                    <li><a class="dropdown-item" href="#">Buoni regalo</a></li>
+                    <li><a class="dropdown-item" href="#">Cancelleria e prodotti per ufficio</a></li>
+                    <li><a class="dropdown-item" href="#">Casa e cucina</a></li>
+                    <li><a class="dropdown-item" href="#">CD e vinili</a></li>
+                    <li><a class="dropdown-item" href="#">Dispositivi Amazon</a></li>
+                    <li><a class="dropdown-item" href="#">Elettronica</a></li>
+                    <li><a class="dropdown-item" href="#">Fai da te</a></li>
+                    <li><a class="dropdown-item" href="#">Film e TV</a></li>
+                    <li><a class="dropdown-item" href="#">Giardino e giardinaggio</a></li>
+                    <li><a class="dropdown-item" href="#">Giochi e giocattoli</a></li>
+                    <li><a class="dropdown-item" href="#">Gioielli</a></li>
+                    <li><a class="dropdown-item" href="#">Grandi elettrodomestici</a></li>
+                    <li><a class="dropdown-item" href="#">Handmade</a></li>
+                    <li><a class="dropdown-item" href="#">Illuminazione</a></li>
+                    <li><a class="dropdown-item" href="#">Industria e Scienza</a></li>
+                    <li><a class="dropdown-item" href="#">Informatica</a></li>
+                    <li><a class="dropdown-item" href="#">Libri</a></li>
+                    <li><a class="dropdown-item" href="#">Moda</a></li>
+                    <li><a class="dropdown-item" href="#">Musica Digitale</a></li>
+                    <li><a class="dropdown-item" href="#">Orologi</a></li>
+                    <li><a class="dropdown-item" href="#">Prima Infanzia</a></li>
+                    <li><a class="dropdown-item" href="#">Videogiochi</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style = "width: 30rem;">
+                    <button class="btn bi bi-search" style="background-color: #febd69;" type="button"></button>
+                </div>
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonAccedi" href="login.html">
+                    <div>
+                        <span class="w">Ciao, Accedi</span>
+                        <span style="font-weight: bold;" class="w">Account e liste</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonOrdini">
+                    <div>
+                        <span class="w">Resi</span>
+                        <span style="font-weight: bold;" class="w">e Ordini</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonCarrello">
+                    <div>
+                        <span style="color: #f08804; font-weight: bold;">0</span>
+                        <img src="img/carrello.png" style="width: 80%; height: 90%;" class="d-inline-block align-text-top">
+                    </div>
+                    <span style="font-weight: bold;" class="w carrello">Carrello</span>
+                </a> 
+            </li>
+        </div>
+    </nav>
+
+    <nav class="navbarSecondaria">
+        <div class="container-fluid">
+            <li class="nav-item d-flex">
+                <a class="buttonAll" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <i class="bi bi-list w"><div>Tutte</div></i>
+                </a> 
+                <a class="buttonBestSeller w">
+                    <div>Bestseller</div>
+                </a> 
+                <a class="buttonAmazonBasic w">
+                    <div>Amazon basic</div>
+                </a> 
+                <a class="buttonClienti w">
+                    <div>Servizio Clienti</div>
+                </a> 
+                <a class="buttonOfferte w">
+                    <div>Offerte</div>
+                </a> 
+                <a class="buttonNovita w">
+                    <div>Novità</div>
+                </a> 
+                <a class="buttonPrime w">
+                    <div>Prime</div>
+                </a> 
+                <a class="buttonMusic w">
+                    <div>Musica</div>
+                </a> 
+                <a class="buttonModa w">
+                    <div>Moda</div>
+                </a> 
+                <a class="buttonLibri w">
+                    <div class="libri">Libri</div>
+                </a>  
+                <a class="buttonVideogiochi w">
+                    <div>Videogiochi</div>
+                </a> 
+                <a class="buttonElettronica w">
+                    <div>Elettronica</div>
+                </a> 
+                <a class="buttonCucina w">
+                    <div>Casa e cucina</div>
+                </a> 
+            </li>
+            
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header" style="background-color: #232f3e">
+            <i class="fa-solid fa-user w"></i>
+            <h5 class="offcanvas-title w" id="offcanvasExampleLabel">Ciao, Accedi</h5>
+            <button type="button" class="btn-close light text-reset" style="background-color: white;" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        <h4 style="font-weight: bold;">Di tendenza</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Bestseller</button>
+        <button class="btn" style="width: 100%; text-align: left;">Novità</button>
+        <button class="btn" style="width: 100%; text-align: left;">I prodotti del momento</button>
+        <hr>
+        <h4 style="font-weight: bold;">Dispositivi E Contenuti Digitali</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Prime Video</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Music</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Photos</button>
+        <button class="btn" style="width: 100%; text-align: left;">Echo e Alexa</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Fire TV</button>
+        <button class="btn" style="width: 100%; text-align: left;">E-reader e eBook Kindle</button>
+        <button class="btn" style="width: 100%; text-align: left;">Audiolibri Audible</button>
+        <hr>
+        <h4 style="font-weight: bold;">Scegli per categoria</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Libri</button>
+        <button class="btn" style="width: 100%; text-align: left;">Musica, Film e TV</button>
+        <button class="btn" style="width: 100%; text-align: left;">Videogiochi e Console</button>
+        <button class="btn" style="width: 100%; text-align: left;">Elettronica e Informatica</button>
+        <hr>
+        <h4 style="font-weight: bold;">Aiuto e Impostazioni</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Il mio account</button>
+        <button class="btn" style="width: 100%; text-align: left;">Servizio clienti</button>
+        <button class="btn" style="width: 100%; text-align: left;">Accedi</button>
+        </div>
+    </div>
+
+
+    <div class="wrapper">
+        
+        <div style="float: left; display:grid; width: 15%; margin-left: 1%;">
+            <div>
+                <h4>Filtra la ricerca: </h4>
+                <h7>Marche selezionabili: </h7>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Lacoste
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Levi's  
+                    </label>
+                </div>
+                <hr>
+                <h7>Sottocategorie: </h7>
+                <br>
+                <div class="btn-group dropend">
+                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Uomo
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Jeans</a></li>
+                        <li><a class="dropdown-item" href="#">Pantaloni</a></li>
+                    </ul>
+                </div>
+                <br>
+                <div class="btn-group dropend">
+                    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Donna
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Jeans</a></li>
+                        <li><a class="dropdown-item" href="#">Pantaloni</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <h7>Amazon Prime: </h7>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Spedizione con Prime
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Spedizione senza Prime
+                    </label>
+                </div>
+                <hr>
+                <h7>Range prezzo: </h7>
+                <div class="value" >Costo max: 5 euro</div>
+			    <input type="range" min="5" max="500" step="1" value="5">
+                <hr>
+                <h7>Offerte: </h7>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        Visualizza anche le offerte
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h3 style="position: relative; z-index: 0; left:20%; margin-top: 2%; margin-bottom: 2%;">Sezione Abbigliamento Uomo: </h3>
+		<div class="row row-cols-1 row-cols-md-4 cards" id="cardsCategorie">
+            <div class="col">
+			  	<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Prodotti Usati e Come Nuovi</h5>
+					</div>
+					<img src="img/4_Image.jpg" class="card-img-top">
+					<div class="card-body">
+						<a href="#" class="card-link">Scopri le offerte</a>
+					</div>  
+			  	</div>
+			</div>
+			<div class="col">
+			  	<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Pagina delle Offerte</h5>
+					</div>
+					<img src="img/11_image.jpg" class="card-img-top">
+					<div class="card-body">
+						<a href="#" class="card-link">Scopri le offerte</a>
+					</div>  
+				</div>
+			</div>
+			<div class="col">
+			  <div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Scopri nuovi Libri</h5>
+				</div>
+				<img src="img/5_Image.jpg" class="card-img-top">
+				<div class="card-body">
+					<a href="#" class="card-link">Scopri le offerte</a>
+				</div>  
+			  </div>
+			</div>
+			<div class="col">
+				<div class="card">
+				  <div class="card-body">
+					<h5 class="card-title">Film e Serie TV</h5>
+				  </div>
+				  <img src="img/6_Image.jpg" class="card-img-top">
+				  <div class="card-body">
+					<a href="#" class="card-link">Scopri le offerte</a>
+				  </div>  
+				</div>
+			</div>
+		</div>
+
+	<!--footer-->
+	<footer class="footer" style="position: absolute; top: 110rem; z-index: 4;">
+		<div class="container">
+			<div class="row">
+				<div class=" col-sm-4 col-md col-sm-4  col-12 col">
+					<h5 class="headin5_amrc w pt2">Per conoscerci meglio</h5>
+					<p>Opportunità di lavoro</p>
+					<p>Informazioni su Amazon</p>
+					<p>Sostenibilità</p>
+					<p>AGCM - Impegni Amazon Procedimento PS 11716</p>
+					<p>Amazon Science</p>
+				</div>
+			<div class=" col-sm-4 col-md  col-6 col">
+				<h5 class="headin5_amrc w pt2">Guadagna con amazon</h5>
+				<ul class="footerUl">
+					<li><a href="#">Vendi su Amazon</a></li>
+					<li><a href="#">Vendi su Amazon Business</a></li>
+					<li><a href="#">Vendi su Amazon Handmade</a></li>
+					<li><a href="#">Diventa affiliato</a></li>
+					<li><a href="#">Logistica di Amazon</a></li>
+					<li><a href="#">Pubblica con noi da indipendente</a></li>
+					<li><a href="#">Promuovi i tuoi prodotti</a></li>
+					<li><a href="#">Ospita un hub Amazon</a></li>
+					<li><a href="#">Scopri di più su Make Money with Us</a></li>
+				</ul>
+			</div>
+		
+		
+			<div class=" col-sm-4 col-md  col-6 col">
+				<h5 class="headin5_amrc w pt2">Metodi di pagamento Amazon</h5>
+				<ul class="footerUl">
+					<li><a href="#">Metodi di pagamento</a></li>
+					<li><a href="#">Convertitore di Valuta Amazon</a></li>
+					<li><a href="#">Buoni regalo</a></li>
+					<li><a href="#">Ricarica online</a></li>
+					<li><a href="#">Ricarica in cassa</a></li>
+				</ul>
+			</div>
+		
+		
+			<div class=" col-sm-4 col-md  col-12 col">
+				<h5 class="headin5_amrc w pt2">Bisogno di aiuto?</h5>		
+				<ul class="footerUl">
+					<li><a href="#">Visualizza o traccia un ordine</a></li>
+					<li><a href="#">Costi e modalità di spedizione</a></li>
+					<li><a href="#">Amazon Prime</a></li>
+					<li><a href="#">Restituisci o sostituisci articoli</a></li>
+					<li><a href="#">Riciclo</a></li>
+					<li><a href="#">I miei contenuti e dispositivi</a></li>
+					<li><a href="#">App Amazon Mobile</a></li>
+					<li><a href="#">Amazon Assistant</a></li>
+					<li><a href="#">Servizio Clienti</a></li>
+					<li><a href="#">IVA e fatturazione</a></li>
+					<li><a href="#">Garanzia legale</a></li>
+				</ul>
+			</div>
+		</div>		
+	<hr class="w"></hr>
+		
+	<div class="container">
+		<div style="width: 100%; text-align: center;">
+			<img src="img/logo.png" class="d-inline-block">
+		</div>
+		<ul class="foote_bottom_ul_amrc" style="text-align: center;">
+			<li><a href="#">Australia</a></li>
+			<li><a href="#">Brasile</a></li>
+			<li><a href="#">Canada</a></li>
+			<li><a href="#">Cina</a></li>
+			<li><a href="#">Francia</a></li>
+			<li><a href="#">Germania</a></li>
+			<li><a href="#">Giappone</a></li>
+			<li><a href="#">India</a></li>
+			<li><a href="#">Messico</a></li>
+			<li><a href="#">Paesi Bassi</a></li>
+			<li><a href="#">Polonia</a></li>
+			<li><a href="#">Emirati Arabi Uniti</a></li>
+			<li><a href="#">Regno Unito</a></li>
+			<li><a href="#">Spagna</a></li>
+			<li><a href="#">Singapore</a></li>
+			<li><a href="#">Stati Uniti</a></li>
+			<li><a href="#">Turchia</a></li>
+		</ul>
+		<hr class="w"></hr>
+		<p class="text-center">Copyright @2022 | <a href="http://fiorentinosimone.altervista.org/" target="_blank">Fiorentino Simone</a></p>
+		<!-- Section: Social media -->
+		<section class="mb-4" style="text-align: center;">
+			<!-- Facebook -->
+			<a class="btn btn-outline-light btn-floating m-1" href="https:facebook.com/Simone.Fiorentino04" role="button"
+			><i class="fab fa-facebook-f"></i
+			></a>
+	
+			<!-- Twitter -->
+			<a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/Simone59576592" role="button"
+			><i class="fab fa-twitter"></i
+			></a>
+	
+			<!-- Google -->
+			<a class="btn btn-outline-light btn-floating m-1" href="mailto:s.fiorentino.1743@vallauri.edu" role="button"
+			><i class="fab fa-google"></i
+			></a>
+	
+			<!-- Instagram -->
+			<a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/simo.fiorentino/" role="button"
+			><i class="fab fa-instagram"></i
+			></a>
+	
+			<!-- Linkedin -->
+			<a class="btn btn-outline-light btn-floating m-1" href="https://it.linkedin.com/" role="button"
+			><i class="fab fa-linkedin-in"></i
+			></a>
+	
+			<!-- Github -->
+			<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Fiorentino-Simone" role="button"
+			><i class="fab fa-github"></i
+			></a>
+		</section>
+	</div>
+	</footer>
+	
+	</div>
+
+
+
+    <!--#region SCRIPT -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+        crossorigin="anonymous"></script>
+        <!--LINK A DELLE LIBRERIE IN RETE, li inseriamo dentro il body siccome bisogna seguire DETTAGLIATAMENTE la guida-->
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>	
+        <script src="server/libreria.js"></script>
+        <script src="index.js"></script>
+        <script src="visualizzazione.js"></script>	
+    <!--#endregion -->
+</body>
+</html>

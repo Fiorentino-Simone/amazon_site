@@ -1,0 +1,38 @@
+/*#region SLIDER*/
+  
+  input[type="range"] {
+    display: block; -webkit-appearance: none; /*risolve il problema su chrome*/
+    margin-top: 10% !important;
+    background-color: #bdc3c7;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+  
+  input[type="range"]::-webkit-slider-thumb { /*movimento che ingrandisce lo slider*/
+      -webkit-appearance: none;
+     background-color: #f99600;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+      transition: .3s ease-in-out;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { /*hover sull'ingrandimento*/
+      background-color: white;
+      border: 2px solid #f99600;
+  }
+  input[type="range"]::-webkit-slider-thumb:active { /*controllo dell'active sull'hover*/
+      transform: scale(1.6);
+  }
+  /*#endregion*/
+
+
+.wrapper #cardsCategorie{
+    left: 20%;
+    z-index: 1;
+    width: 80%;      
+}
