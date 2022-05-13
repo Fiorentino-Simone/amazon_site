@@ -205,29 +205,34 @@ a{
 
 /*#region WRAPPER*/
 .wrapper{
-    position: relative;
+  position: relative;
 }
   
 .wrapper > div{
-    position: absolute;
+  position: absolute;
 }
 
 .card-text{
-    text-align: center;
+  text-align: center;
 }
 
 .prezzo{
-    font-size: 21px;
-    font-weight: 400;
+  font-size: 21px;
+  font-weight: 400;
 }
 
 .wrapper #cardsCategorie{
-    left: 20%;
-    z-index: 1;
-    width: 80%;      
+  left: 20%;
+  z-index: 1;
+  width: 80%;     
 }
+
+.firstH3{
+  width: max-content !important;
+}
+
 .bold{
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .wrapper h3 a{
@@ -238,8 +243,28 @@ a{
 
 .wrapper h3 a:hover{
   text-decoration: underline !important;
+  cursor: pointer;
 }
 
+#cardsCategorie > div{
+  display: contents;
+}
+
+.immagine{
+  width: 100%;
+  height: 100%;
+}
+.marca{
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.card{
+  height: 35rem;
+  cursor: pointer;
+}
 
 
 /*#region FOOTER*/
