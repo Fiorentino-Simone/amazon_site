@@ -39,6 +39,7 @@ $(document).ready(function(){
     items.on("click",function(){
         itemSelected = $(this).text();
         console.log(itemSelected);
+        if(itemSelected == "Alimentazione e cura della casa") itemSelected = "alimentari";
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 

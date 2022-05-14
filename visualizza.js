@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     /*************************************FUNCTIONS *********************************/
     function visualizzaProdotti(itemSelected){
-        let request = inviaRichiesta("GET", "server/elenco"+itemSelected+".php");
+        let request = inviaRichiesta("GET", "server/elencoProdotti.php", {"categoria" : itemSelected});
         request.fail(errore);
         request.done(function(prodotti){
             console.log(prodotti);
@@ -31,9 +31,10 @@ $(document).ready(function(){
                 if (!(prezzi.includes(prodotto.Prezzo)))
                     prezzi.push(prodotto.Prezzo);
             }
+            console.log(categorie);
 
             let j=0;
-            for (let i = 0; i < categorie.length-1; i++) {
+            for (let i = 0; i < categorie.length; i++) {
                 //scorre nVolte le categorie da clonare
                 if(i==0){
                     $(".titoloCategoria").eq(i).html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>");
@@ -68,7 +69,7 @@ $(document).ready(function(){
                     $(".sezione").eq(i).prop("id","sezione_"+i);
                     j=0;
                     for (let prodotto of prodotti) {
-                        if(prodotto.CategoriaPrincipale.toUpperCase() == categorie[i]){
+                        if(prodotto.CategoriaPrincipale.toUpperCase().trim() == categorie[i]){
                             if(j<ITEMS){
                                 console.log(prodotto);
                                 $("#sezione_"+i+" .marca").eq(j).text(prodotto.marca);
