@@ -6,7 +6,6 @@ $(document).ready(function(){
     let valueItemSelected = window.location.search;
     valueItemSelected = valueItemSelected.substring(5,valueItemSelected.length);
     visualizzaProdotti(valueItemSelected);
-    let cardsCategorie = $("#cardsCategorie");
     
 
 
@@ -44,9 +43,9 @@ $(document).ready(function(){
                             if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
                                 let newText = prodotto["Descrizione Prodotto"].substring(0,50);
                                 newText += "..."
-                                $(".sezione .descrizione").eq(j).text(newText);
+                                $(".sezione .descrizione").eq(j).text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
                             }
-                            else $(".sezione .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]);
+                            else $(".sezione .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
                             $(".sezione .immagine").eq(j).prop("src",prodotto["Immagine"]);
                             if(parseInt(prodotto["Stelle Recensioni"]) <= 1) $(".sezione .stelle").eq(j).prop("src","img/1_stella.png");
                             else $(".sezione .stelle").eq(j).prop("src","img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png");
@@ -71,13 +70,14 @@ $(document).ready(function(){
                     for (let prodotto of prodotti) {
                         if(prodotto.CategoriaPrincipale.toUpperCase() == categorie[i]){
                             if(j<ITEMS){
+                                console.log(prodotto);
                                 $("#sezione_"+i+" .marca").eq(j).text(prodotto.marca);
                                 if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
                                     let newText = prodotto["Descrizione Prodotto"].substring(0,50);
                                     newText += "..."
-                                    $("#sezione_"+i+" .descrizione").eq(j).text(newText);
+                                    $("#sezione_"+i+" .descrizione").eq(j).text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
                                 }
-                                else $("#sezione_"+i+" .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]);
+                                else $("#sezione_"+i+" .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
                                 $("#sezione_"+i+" .immagine").eq(j).prop("src",prodotto["Immagine"]);
                                 if(parseInt(prodotto["Stelle Recensioni"]) <= 1) $("#sezione_"+i+" .stelle").eq(j).prop("src","img/1_stella.png");
                                 else $("#sezione_"+i+" .stelle").eq(j).prop("src","img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png");
@@ -246,6 +246,11 @@ $(document).ready(function(){
                 let vect = prezzi.map(parseFloat);
                 console.log(vect);
                 return Math.min(...vect);
+            }
+
+            function visualizzaProdotto(){
+                let idProdotto = $(this).prop("id");
+                window.open("prodotto.html?cat="+valueItemSelected+"&id="+idProdotto,"_self");
             }
         });
     }

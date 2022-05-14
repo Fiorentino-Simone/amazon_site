@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html" />
+	<title> Abbigliamento: AMAZON </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--META TAG CHE MODIFICA LA VISUALIZZAZIONE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="prodotto.css"/>
+</head>
+<body style="background-color: #fff;">
+
+
+
+    <!--#region NAVBAR -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" class="d-inline-block align-text-top">
+            </a>
+            <li class="nav-item d-flex">
+                <a class="buttonHeader">
+                    <i class="bi bi-geo-alt w"></i>
+                    <div>
+                        <span class="w">Ciao</span>
+                        <span style="font-weight: bold;" class="w">Scegli il tuo indirizzo</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex insertText">
+                <div class="input-group">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Tutte le categorie</button>
+                    <ul class="dropdown-menu">
+                    <li class="categorie"><a class="dropdown-item " href="#">Tutte le categorie</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Abbigliamento</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Alexa Skill</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Alimentazione e cura della casa</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Amazon Fresh</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Amazon Global Store</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Amazon Warehouse</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">App e Giochi</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Audiolibri Audible</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Auto e Moto - Parti e Accessori</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Bellezza</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Buoni regalo</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Cancelleria e prodotti per ufficio</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Casa e cucina</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">CD e vinili</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Dispositivi Amazon</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Elettronica</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Fai da te</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Film e TV</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Giardino e giardinaggio</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Giochi e giocattoli</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Gioielli</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Grandi elettrodomestici</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Handmade</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Illuminazione</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Industria e Scienza</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Informatica</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Libri</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Moda</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Musica Digitale</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Orologi</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Prima Infanzia</a></li>
+                    <li class="categorie"><a class="dropdown-item " href="#">Videogiochi</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style = "width: 30rem;">
+                    <button class="btn bi bi-search" style="background-color: #febd69;" type="button"></button>
+                </div>
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonAccedi" href="login.html">
+                    <div>
+                        <span class="w">Ciao, Accedi</span>
+                        <span style="font-weight: bold;" class="w">Account e liste</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonOrdini">
+                    <div>
+                        <span class="w">Resi</span>
+                        <span style="font-weight: bold;" class="w">e Ordini</span>
+                    </div>
+                </a> 
+            </li>
+            <li class="nav-item d-flex">
+                <a class="buttonCarrello">
+                    <div>
+                        <span style="color: #f08804; font-weight: bold;">0</span>
+                        <img src="img/carrello.png" style="width: 80%; height: 90%;" class="d-inline-block align-text-top">
+                    </div>
+                    <span style="font-weight: bold;" class="w carrello">Carrello</span>
+                </a> 
+            </li>
+        </div>
+    </nav>
+
+    <nav class="navbarSecondaria">
+        <div class="container-fluid">
+            <li class="nav-item d-flex">
+                <a class="buttonAll" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <i class="bi bi-list w"><div>Tutte</div></i>
+                </a> 
+                <a class="buttonBestSeller w">
+                    <div>Bestseller</div>
+                </a> 
+                <a class="buttonAmazonBasic w">
+                    <div>Amazon basic</div>
+                </a> 
+                <a class="buttonClienti w">
+                    <div>Servizio Clienti</div>
+                </a> 
+                <a class="buttonOfferte w">
+                    <div>Offerte</div>
+                </a> 
+                <a class="buttonNovita w">
+                    <div>Novità</div>
+                </a> 
+                <a class="buttonPrime w">
+                    <div>Prime</div>
+                </a> 
+                <a class="buttonMusic w">
+                    <div>Musica</div>
+                </a> 
+                <a class="buttonModa w">
+                    <div>Moda</div>
+                </a> 
+                <a class="buttonLibri w">
+                    <div class="libri">Libri</div>
+                </a>  
+                <a class="buttonVideogiochi w">
+                    <div>Videogiochi</div>
+                </a> 
+                <a class="buttonElettronica w">
+                    <div>Elettronica</div>
+                </a> 
+                <a class="buttonCucina w">
+                    <div>Casa e cucina</div>
+                </a> 
+            </li>
+            
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header" style="background-color: #232f3e">
+            <i class="fa-solid fa-user w"></i>
+            <h5 class="offcanvas-title w" id="offcanvasExampleLabel">Ciao, Accedi</h5>
+            <button type="button" class="btn-close light text-reset" style="background-color: white;" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        <h4 style="font-weight: bold;">Di tendenza</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Bestseller</button>
+        <button class="btn" style="width: 100%; text-align: left;">Novità</button>
+        <button class="btn" style="width: 100%; text-align: left;">I prodotti del momento</button>
+        <hr>
+        <h4 style="font-weight: bold;">Dispositivi E Contenuti Digitali</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Prime Video</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Music</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Photos</button>
+        <button class="btn" style="width: 100%; text-align: left;">Echo e Alexa</button>
+        <button class="btn" style="width: 100%; text-align: left;">Amazon Fire TV</button>
+        <button class="btn" style="width: 100%; text-align: left;">E-reader e eBook Kindle</button>
+        <button class="btn" style="width: 100%; text-align: left;">Audiolibri Audible</button>
+        <hr>
+        <h4 style="font-weight: bold;">Scegli per categoria</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Libri</button>
+        <button class="btn" style="width: 100%; text-align: left;">Musica, Film e TV</button>
+        <button class="btn" style="width: 100%; text-align: left;">Videogiochi e Console</button>
+        <button class="btn" style="width: 100%; text-align: left;">Elettronica e Informatica</button>
+        <hr>
+        <h4 style="font-weight: bold;">Aiuto e Impostazioni</h4>
+        <button class="btn" style="width: 100%; text-align: left;">Il mio account</button>
+        <button class="btn" style="width: 100%; text-align: left;">Servizio clienti</button>
+        <button class="btn" style="width: 100%; text-align: left;">Accedi</button>
+        </div>
+    </div>
+
+
+    <div class="wrapper" style="height: 100%;">
+        <img class="image" style="border: 1px solid rgb(213, 209, 209);">
+        <h3 class="title" style="position: absolute; top:3%; left: 35%; width: 40%; font-weight: normal; font-size: 18pt; padding-bottom: 25px;"></h3>
+        <div style="position: absolute; top:21%; left: 35%; text-align: center;"><img class="img-fluid stelle" width="90" height="90"></img></div>
+        <div style="position: absolute; top:21%; left: 42%;">Numero di recensioni: <span class="numeroRecensioni"></span></div>
+        <div style="position: absolute; top:25%; left: 35%;">Prezzo: <span class="prezzo"></span></div>
+        <div style="position: absolute; top:35%; left: 35%;">Categoria: <span class="categoria"></span></div>
+        <div style="position: absolute; top:40%; left: 35%;">Sottocategoria: <span class="sottocategoria"></span></div>
+        <div style="position: absolute; top:45%; left: 35%;">Marca: <span class="marca"></span></div>
+        <div style="position: absolute; top:50%; left: 35%;">Materiale: <span class="materiale"></span></div>
+        <div style="position: absolute; top:55%; left: 35%;">Max Quantità acquistabili: <span class="maxAcquistabili"></span></div>
+        <div style="position: absolute; top:60%; left: 35%;">Disponibilità: <span class="disponibilità"></span></div>
+        <div style="position: absolute; top:65%; left: 35%;">prime: <span class="prime"></span></div>
+
+    </div>
+
+
+
+    <!--#region SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!--LINK A DELLE LIBRERIE IN RETE, li inseriamo dentro il body siccome bisogna seguire DETTAGLIATAMENTE la guida-->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>	
+    <script src="server/libreria.js"></script>
+    <script src="index.js"></script>
+    <script src="prodotto.js"></script>
+<!--#endregion -->
+</body>
+</html>
