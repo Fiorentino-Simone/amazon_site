@@ -33,4 +33,14 @@ $(document).ready(function(){
     function(){
         $(this).show();
     });
+
+    let items = $(".categorie .dropdown-item");
+    let itemSelected;
+    items.on("click",function(){
+        itemSelected = $(this).text();
+        console.log(itemSelected);
+        window.open("visualizzazione.html?cat="+itemSelected,"_self");
+    });
+
+    
 });
