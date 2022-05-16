@@ -6,12 +6,20 @@ $(document).ready(function(){
     let valueItemSelected = window.location.search;
     valueItemSelected = valueItemSelected.substring(5,valueItemSelected.length);
     visualizzaProdotti(valueItemSelected);
+
+    if(valueItemSelected == "alimentari") valueItemSelected = "Alimentazione e cura della casa";
+    if(valueItemSelected == "auto") valueItemSelected = "Auto e Moto - Parti e Accessori";
+    if(valueItemSelected == "cancelleria") valueItemSelected = "Cancelleria e prodotti per ufficio";
+    if(valueItemSelected == "casa") valueItemSelected = "Casa e cucina";
     
+    $(document).prop('title', valueItemSelected + ": AMAZON");
+    $(".dropdown-toggle").html(valueItemSelected);
 
 
 
     /*************************************FUNCTIONS *********************************/
     function visualizzaProdotti(itemSelected){
+        let itemCorrente = itemSelected;
         let request = inviaRichiesta("GET", "server/elencoProdotti.php", {"categoria" : itemSelected});
         request.fail(errore);
         request.done(function(prodotti){
@@ -251,7 +259,7 @@ $(document).ready(function(){
 
             function visualizzaProdotto(){
                 let idProdotto = $(this).prop("id");
-                window.open("prodotto.html?cat="+valueItemSelected+"&id="+idProdotto,"_self");
+                window.open("prodotto.html?cat="+itemCorrente+"&id="+idProdotto,"_self");
             }
         });
     }

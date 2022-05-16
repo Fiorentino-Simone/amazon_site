@@ -40,6 +40,9 @@ $(document).ready(function(){
         itemSelected = $(this).text();
         console.log(itemSelected);
         if(itemSelected == "Alimentazione e cura della casa") itemSelected = "alimentari";
+        if(itemSelected == "Auto e Moto - Parti e Accessori") itemSelected = "auto";
+        if(itemSelected == "Cancelleria e prodotti per ufficio") itemSelected = "cancelleria";
+        if(itemSelected == "Casa e cucina") itemSelected = "casa";
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 

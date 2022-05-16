@@ -209,10 +209,45 @@ a{
   position: relative;
 }
 
-.wrapper > div{
-    font-weight: bold;
+.wrapper .image{
+  position: absolute;
+  left: 2%;
 }
 
-.wrapper > div span{
-    font-weight: normal;
+tr > td:first-of-type{
+  font-weight: bold;
+}
+
+.containerInfo{
+  display: grid;
+  width: 40%;
+  position: absolute;
+  top:3%;
+  left: 35%;
+}
+
+.title{
+  font-weight: normal;
+  font-size: 18pt;
+}
+
+
+.containerAcquisto{
+  display: grid;
+  width: 20%;
+  position: absolute;
+  top:3%;
+  /*border: 1px solid rgb(213, 209, 209);*/
+  left: 78%;
+}
+
+
+.disponibilitàTesto{
+  font-weight: bold;
+  color: green;
+}
+
+.quantità label{
+  margin-right: 10%;
+  margin-top: 2%;
 }
