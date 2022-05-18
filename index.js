@@ -43,6 +43,7 @@ $(document).ready(function(){
         if(itemSelected == "Auto e Moto - Parti e Accessori") itemSelected = "auto";
         if(itemSelected == "Cancelleria e prodotti per ufficio") itemSelected = "cancelleria";
         if(itemSelected == "Casa e cucina") itemSelected = "casa";
+        if(itemSelected == "CD e vinili") itemSelected = "CD";
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 

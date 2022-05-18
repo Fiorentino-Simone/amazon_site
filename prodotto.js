@@ -49,8 +49,13 @@ $(document).ready(function(){
             if(prodotto["Prime"]==1) $(".prime").text("Spedizione con prime");
             else $(".prime").text("Spedizione senza prime");
 
-            if(prodotto["Prime"]==1) $(".primeFoto").prepend($("<img>").prop("src","img/Prime.jpg"));
-
+            if(prodotto["Prime"]==1) {
+                $(".primeFoto").prepend($("<img>").prop("src","img/Prime.jpg"));
+            }
+            else{
+                $(".primeFoto").text("");
+                $(".primeFoto").remove();
+            }
             //gestione date
             let giorno = moment().locale('it')
             .add(parseInt(prodotto["Tempo di Consegna"]), 'd')
