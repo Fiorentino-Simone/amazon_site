@@ -12,6 +12,12 @@ $(document).ready(function(){
     if(valueItemSelected == "cancelleria") valueItemSelected = "Cancelleria e prodotti per ufficio";
     if(valueItemSelected == "casa") valueItemSelected = "Casa e cucina";
     if(valueItemSelected == "CD") valueItemSelected = "CD e vinili";
+    if(valueItemSelected == "dispositiviAmazon") valueItemSelected = "Dispositivi Amazon";
+    if(valueItemSelected == "faiDaTe") valueItemSelected = "Fai da te";
+    if(valueItemSelected == "film") valueItemSelected = "Film e TV";
+    if(valueItemSelected == "giardinaggio") valueItemSelected = "Giardino e giardinaggio";
+
+
     
     $(document).prop('title', valueItemSelected + ": AMAZON");
     $(".dropdown-toggle").html(valueItemSelected);
@@ -249,14 +255,22 @@ $(document).ready(function(){
             /******************FUNCTIONS *********/
             function maxPrice(){
                 let vect = prezzi.map(parseFloat);
-                console.log(vect);
-                return Math.max(...vect);
+                for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
+                let max = vect[0];
+                for(let i=0; i<vect.length; i++){
+                    if(max < vect[i]) max = vect[i];
+                }
+                return max;
             }
 
             function minPrice(){
                 let vect = prezzi.map(parseFloat);
-                console.log(vect);
-                return Math.min(...vect);
+                for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
+                let min = vect[0];
+                for(let i=0; i< vect.length; i++){
+                    if(min > vect[i]) min = vect[i];
+                }
+                return min;
             }
 
             function visualizzaProdotto(){

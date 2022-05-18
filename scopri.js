@@ -14,6 +14,11 @@ $(document).ready(function(){
     if(tableSezione == "cancelleria") tableSezione = "Cancelleria e prodotti per ufficio";
     if(tableSezione == "casa") tableSezione = "Casa e cucina";
     if(tableSezione == "CD") tableSezione = "CD e vinili";
+    if(tableSezione == "dispositiviAmazon") tableSezione = "Dispositivi Amazon";
+    if(tableSezione == "faiDaTe") tableSezione = "Fai da te";
+    if(tableSezione == "film") tableSezione = "Film e TV";
+    if(tableSezione == "giardinaggio") tableSezione = "Giardino e giardinaggio";
+
 
     $(document).prop('title', tableSezione + ": AMAZON");
     $(".titoloCategoria").text("Tutti i risultati per " + categoria.toLowerCase());

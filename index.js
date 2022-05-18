@@ -44,6 +44,11 @@ $(document).ready(function(){
         if(itemSelected == "Cancelleria e prodotti per ufficio") itemSelected = "cancelleria";
         if(itemSelected == "Casa e cucina") itemSelected = "casa";
         if(itemSelected == "CD e vinili") itemSelected = "CD";
+        if(itemSelected == "Dispositivi Amazon") itemSelected = "dispositiviAmazon";
+        if(itemSelected == "Fai da te") itemSelected = "faiDaTe";
+        if(itemSelected == "Film e TV") itemSelected = "film";
+        if(itemSelected == "Giardino e giardinaggio") itemSelected = "giardinaggio";
+
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 
