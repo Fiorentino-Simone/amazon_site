@@ -16,6 +16,8 @@ $(document).ready(function(){
     if(valueItemSelected == "faiDaTe") valueItemSelected = "Fai da te";
     if(valueItemSelected == "film") valueItemSelected = "Film e TV";
     if(valueItemSelected == "giardinaggio") valueItemSelected = "Giardino e giardinaggio";
+    if(valueItemSelected == "giochi") valueItemSelected = "Giochi e giocattoli";
+    if(valueItemSelected == "grandiElettrodomestici") valueItemSelected = "Grandi elettrodomestici";
 
 
     

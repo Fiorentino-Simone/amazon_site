@@ -18,6 +18,8 @@ $(document).ready(function(){
     if(tableSezione == "faiDaTe") tableSezione = "Fai da te";
     if(tableSezione == "film") tableSezione = "Film e TV";
     if(tableSezione == "giardinaggio") tableSezione = "Giardino e giardinaggio";
+    if(tableSezione == "giochi") tableSezione = "Giochi e giocattoli";
+    if(tableSezione == "grandiElettrodomestici") tableSezione = "Grandi elettrodomestici";
 
 
     $(document).prop('title', tableSezione + ": AMAZON");

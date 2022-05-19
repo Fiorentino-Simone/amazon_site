@@ -48,6 +48,9 @@ $(document).ready(function(){
         if(itemSelected == "Fai da te") itemSelected = "faiDaTe";
         if(itemSelected == "Film e TV") itemSelected = "film";
         if(itemSelected == "Giardino e giardinaggio") itemSelected = "giardinaggio";
+        if(itemSelected == "Giochi e giocattoli") itemSelected = "giochi";
+        if(itemSelected == "Grandi elettrodomestici") itemSelected = "grandiElettrodomestici";
+
 
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
