@@ -50,74 +50,14 @@ $(document).ready(function(){
             }
             console.log(categorie);
 
-            let j=0;
-            for (let i = 0; i < categorie.length; i++) {
-                //scorre nVolte le categorie da clonare
-                if(i==0){
-                    $(".titoloCategoria").eq(i).html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemSelected, categorie[i])});
-                    for (let prodotto of prodotti) {
-                        if(j<ITEMS){
-                            $(".sezione .marca").eq(j).text(prodotto.marca);
-                            if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
-                                let newText = prodotto["Descrizione Prodotto"].substring(0,50);
-                                newText += "..."
-                                $(".sezione .descrizione").eq(j).text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                            }
-                            else $(".sezione .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                            $(".sezione .immagine").eq(j).prop("src",prodotto["Immagine"]);
-                            if(parseInt(prodotto["Stelle Recensioni"]) <= 1) $(".sezione .stelle").eq(j).prop("src","img/1_stella.png");
-                            else $(".sezione .stelle").eq(j).prop("src","img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png");
-                            let price = parseFloat(prodotto["Prezzo"]).toFixed(2);
-                            price = price.toString().replace(".",",");
-                            $(".sezione .prezzo").eq(j).text(price+"€");
-                            if(parseInt(prodotto["Prime"]) == 1) $(".sezione .prime").eq(j).prop("src","img/prime.png");
-                            else $(".sezione .prime").eq(j).prop("src","");
-                            j++;
-                        }
-                        else
-                            break;
-                    }
-                }
-                else{
-                    $(".titoloCategoria").eq(0).clone().appendTo(cardsCategorie);
-                    $(".titoloCategoria").eq(i).html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a>Scopri di più</a>").on("click",function(){openScopri(itemSelected, categorie[i])})
-                    .removeClass("firstH3").css("left","0%");
-                    $(".sezione").eq(0).clone().appendTo(cardsCategorie);
-                    $(".sezione").eq(i).prop("id","sezione_"+i);
-                    j=0;
-                    for (let prodotto of prodotti) {
-                        if(prodotto.CategoriaPrincipale.toUpperCase().trim() == categorie[i]){
-                            if(j<ITEMS){
-                                console.log(prodotto);
-                                $("#sezione_"+i+" .marca").eq(j).text(prodotto.marca);
-                                if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
-                                    let newText = prodotto["Descrizione Prodotto"].substring(0,50);
-                                    newText += "..."
-                                    $("#sezione_"+i+" .descrizione").eq(j).text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                                }
-                                else $("#sezione_"+i+" .descrizione").eq(j).text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                                $("#sezione_"+i+" .immagine").eq(j).prop("src",prodotto["Immagine"]);
-                                if(parseInt(prodotto["Stelle Recensioni"]) <= 1) $("#sezione_"+i+" .stelle").eq(j).prop("src","img/1_stella.png");
-                                else $("#sezione_"+i+" .stelle").eq(j).prop("src","img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png");
-                                let price = parseFloat(prodotto["Prezzo"]).toFixed(2);
-                                price = price.toString().replace(".",",");
-                                $("#sezione_"+i+" .prezzo").eq(j).text(price+"€");
-                                if(parseInt(prodotto["Prime"]) == 1) $("#sezione_"+i+" .prime").eq(j).prop("src","img/prime.png");
-                                else $("#sezione_"+i+" .prime").eq(j).prop("src","");
-                                j++;
-                            }
-                            else
-                                break;
-                        }
-                    }
-                }  
-            }
+            creaCards(categorie, prodotti);
+           
             //caricamento filtri 
             let filterWrapper = $("#Filter");
             ////////MARCHE:
             $("<h4>").text("Filtra la ricerca: ").appendTo(filterWrapper);
             $("<h7>").text("Marche selezionabili: ").appendTo(filterWrapper);
-            j=0;
+            let j=0;
             for (let marca of marche) {
                 $(filterWrapper).append(
                     $("<div>")
@@ -126,14 +66,15 @@ $(document).ready(function(){
                         .addClass("form-check-input")
                         .prop({
                             "type": "checkbox",
-                            "value" : marca.toLowerCase(),
-                            "id" : "Check"+ marca.toLowerCase()
+                            "value" : marca.toLowerCase().trim(),
+                            "name" : "marche",
+                            "id" : "Check"+ marca.toLowerCase().trim()
                         })
                     )
                     .append($("<label>")
                     .addClass("form-check-label")
-                    .prop("for","Check"+marca.toLowerCase())
-                    .text(marca.toLowerCase())));
+                    .prop("for","Check"+marca.toLowerCase().trim())
+                    .text(marca.toLowerCase().trim())));
                 if(marche.length-1 == j && j>=5){
                     $(filterWrapper).append(
                         $("<i>").addClass("fa-solid fa-caret-down"))
@@ -165,21 +106,49 @@ $(document).ready(function(){
             ////////SOTTOCATEGORIE:
             $("<h7>").text("Sottocategorie: ").appendTo(filterWrapper);
             $("<br>").appendTo(filterWrapper);
-            $("<div>").appendTo(filterWrapper).addClass("btn-group dropend")
-            .append($("<button>").attr({
-                "type" : "button",
-                "data-bs-toggle" : "dropdown",
-                "aria-expanded" : "false"
-            }).addClass("btn dropdown-toggle").text(itemSelected))
-            .append($("<ul>").addClass("dropdown-menu"));
+            j=0;
             for (let sottocategoria of sottocategorie) {
-                $(".dropdown-menu")
-                .eq(1)
-                .append($("<li>")
-                    .append($("<a>")
-                    .addClass("dropdown-item")
-                    .text(sottocategoria)
-                ));
+                $(filterWrapper).append(
+                    $("<div>")
+                    .addClass("form-check sottocategorieCheck")
+                    .append($("<input>")
+                        .addClass("form-check-input")
+                        .prop({
+                            "type": "checkbox",
+                            "value" : sottocategoria.toLowerCase().trim(),
+                            "name" : "sottocategorie",
+                            "id" : "Check"+ sottocategoria.toLowerCase().trim()
+                        })
+                    )
+                    .append($("<label>")
+                    .addClass("form-check-label")
+                    .prop("for","Check"+sottocategoria.toLowerCase().trim())
+                    .text(sottocategoria.toLowerCase().trim())));
+                if(sottocategorie.length-1 == j && j>=5){
+                    $(filterWrapper).append(
+                        $("<i>").addClass("fa-solid fa-caret-down"))
+                        .append($("<a>").text(" Vedi altri")
+                        .on("click",function(){
+                            if($(this).text() == " Vedi altri"){
+                                for(let i=0; i<sottocategorie.length; i++){
+                                    $(".sottocategorieCheck").eq(i).show();
+                                }
+                                $(this).text(" Mostra meno");
+                                $(this).prevAll("i").removeClass("fa-solid fa-caret-down").addClass("fa-solid fa-caret-up");
+                            }
+                            else{
+                                for(let i=5; i<sottocategorie.length; i++){
+                                    $(".sottocategorieCheck").eq(i).hide();
+                                }
+                                $(this).text(" Vedi altri");
+                                $(this).prevAll("i").removeClass("fa-solid fa-caret-up").addClass("fa-solid fa-caret-down");
+                            }
+                        }));
+                }
+                j++;            
+            }
+            for(let i=5; i< sottocategorie.length; i++){
+                $(".sottocategorieCheck").eq(i).hide();
             }
             $("<hr>").appendTo(filterWrapper);
 
@@ -191,8 +160,9 @@ $(document).ready(function(){
                 .addClass("form-check-input")
                 .prop({
                     "type": "radio",
-                    "name" : "flexRadioDefault",
-                    "id" : "Prime"
+                    "name" : "isPrime",
+                    "id" : "Prime",
+                    "checked" : "true"
                 })
             )
             .append($("<label>")
@@ -205,7 +175,7 @@ $(document).ready(function(){
                 .addClass("form-check-input")
                 .prop({
                     "type": "radio",
-                    "name" : "flexRadioDefault",
+                    "name" : "isPrime",
                     "id" : "NoPrime"
                 })
             )
@@ -243,14 +213,19 @@ $(document).ready(function(){
                 .addClass("form-check-input")
                 .attr({
                     "type": "radio",
-                    "name" : "flexRadioDefault3",
-                    "id" : "VisualizzaOfferte"
+                    "name" : "onlyDeals",
+                    "id" : "VisualizzaOfferte",
+                    "checked" : "true"
                 })
             )
             .append($("<label>")
             .addClass("form-check-label")
             .prop("for","VisualizzaOfferte")
             .text("Visualizza solo le offerte"));
+
+            $("<hr>").appendTo(filterWrapper);
+            //BUTTON INVIA RICERCA
+            $("<button>").addClass("btn").appendTo(filterWrapper).text("INVIA RICERCA").on("click",filtraElementi);
 
 
 
@@ -283,6 +258,170 @@ $(document).ready(function(){
             function openScopri(table, item){
                 window.open("scopri.html?table="+table+"&cat="+item,"_self");
             }
-        });
+
+            function filtraElementi(){
+                //filtra MARCHE
+                let marcheRicerca = [];
+                $("input:checkbox[name=marche]:checked").each(function(){
+                    marcheRicerca.push($(this).val());
+                });
+
+                //filtra SOTTOCATEGORIE
+                let sottocategorieRicerca = [];
+                $("input:checkbox[name=sottocategorie]:checked").each(function(){
+                    sottocategorieRicerca.push($(this).val());
+                });
+                
+                //Filtra su PRIME
+                let hasPrime;
+                if($('input[name="isPrime"]:checked').prop("id") == "Prime") hasPrime = "1"
+                else hasPrime="0"; 
+
+                let maxPrezzo = $("#range").val();
+
+                let onlyDeals; 
+                if($('input[name="onlyDeals"]:checked').prop("id") == "VisualizzaOfferte") onlyDeals = true;
+                else onlyDeals=false; 
+
+                let prodottiFiltrati = [];
+                let prodottiFiltrati1 = [];
+                let prodottiFiltrati2 = [];
+                let prodottiFiltrati3 = [];
+                
+                if(marcheRicerca.length != 0){
+                    for (let products of prodotti) {
+                        if(marcheRicerca.includes(products["marca"].toLowerCase().trim())) prodottiFiltrati.push(products);
+                    }
+                }
+                else prodottiFiltrati = prodotti;
+                if(sottocategorieRicerca.length != 0){
+                    for (let products of prodottiFiltrati) {
+                        if((sottocategorieRicerca.includes(products["SottoCategoria"].toLowerCase().trim()))){
+                            prodottiFiltrati1.push(products);
+                        } 
+                    }
+                }
+                else prodottiFiltrati1 = prodottiFiltrati;
+                for (let products of prodottiFiltrati1) {
+                    if(products["Prime"] == hasPrime){
+                        prodottiFiltrati2.push(products);
+                    } 
+                }
+                for (let products of prodottiFiltrati2) {
+                    if(parseInt(products["Prezzo"]) <= parseInt(maxPrezzo)){
+                        prodottiFiltrati3.push(products);
+                    } 
+                }
+
+                //nuove categorie
+                let newCategorie = [];
+                for (let prodotto of prodottiFiltrati3) {
+                    if (!(newCategorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
+                        newCategorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
+                }
+                console.log(newCategorie);
+                console.log(prodottiFiltrati3);
+                if(prodottiFiltrati3.length == 0){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: "Nessun risultato presente, prova a cambiare i filtri",
+                        footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
+                    })
+                }
+                else creaCards(newCategorie,  prodottiFiltrati3, true);
+            }
+
+
+
+            function creaCards(categorie, prodotti, filter = false){
+                if(filter){
+                    $("#cardsCategorie").remove();
+                    $(".titoloCategoria").remove();
+                } 
+                let j=0;
+                let elemento = 0;
+                for (let i = 0; i < categorie.length; i++) {
+                    if(i == 0){
+                        let h3 = $("<h3>").css({
+                        "position" : "relative",
+                        "z-index" : "0",
+                        "width" : "100%",
+                        "left" : "20%",
+                        "margin-top" : "2%",
+                        "margin-bottom" : "2%"
+                        }).addClass("firstH3 titoloCategoria");
+                        $(".wrapper").append(h3);
+                        h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemSelected, categorie[i])});
+                        $("<div>").appendTo(".wrapper").eq(0).addClass("row cards").prop("id","cardsCategorie");
+                    }
+                    $("<div>").appendTo("#cardsCategorie").addClass("sezione");
+                    if(i != 0){
+                        let h3 = $("<h3>").css({
+                            "position" : "relative",
+                            "z-index" : "0",
+                            "width" : "100%",
+                            "margin-top" : "2%",
+                            "margin-bottom" : "2%"
+                            }).addClass("firstH3 titoloCategoria");
+                            h3.removeClass("firstH3");
+                            h3.appendTo(".sezione").eq(i);
+                            h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemSelected, categorie[i])});
+                    }
+                    for (let prodotto of prodotti) {
+                        if(prodotto.CategoriaPrincipale.toUpperCase().trim() == categorie[i]){
+                            if(j<ITEMS){
+                                let divSezione = $(".sezione").eq(i);
+                                $("<div>").appendTo(divSezione).addClass("col")
+                                .append($("<div>").addClass("card").append($("<div>")
+                                .css({
+                                    "height" : "200px",
+                                    "text-align" : "center"
+                                }).append($("<img>").addClass("card-img-top immagine").prop("src",prodotto["Immagine"])))
+                                .append($("<div>").addClass("card-body")
+                                .append($("<h7>").addClass("card-title marca bold").text(prodotto.marca))));
+                                let divCard = $(".card-body").eq(elemento);
+                                $("<br>").appendTo(divCard);
+                                let divDescrizione = $("<div>").addClass("card-text").append($("<span>").addClass("descrizione")).appendTo(divCard);
+                                if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
+                                    let newText = prodotto["Descrizione Prodotto"].substring(0,50);
+                                    newText += "..."
+                                    divDescrizione.text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
+                                }
+                                else divDescrizione.text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
+                                $("<div>").css({
+                                    "width" : "100%",
+                                    "text-align" : "center"
+                                }).append($("<img>").addClass("img-fluid stelle").prop({
+                                    "width" : "90",
+                                    "height" : "90",
+                                    "src" : function(){
+                                        if(parseInt(prodotto["Stelle Recensioni"]) <= 1) return "img/1_stella.png"
+                                        else return "img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png"
+                                    }
+                                })).appendTo(divCard);
+                                let price = parseFloat(prodotto["Prezzo"]).toFixed(2);
+                                price = price.toString().replace(".",",");
+                                $("<div>").addClass("card-text prezzo").text(price+"€").appendTo(divCard);
+                                $("<div>").css({
+                                    "width" : "100%",
+                                    "text-align" : "center",
+                                }).append($("<img>").addClass("img-fluid prime").prop("src",function(){
+                                    if(parseInt(prodotto["Prime"]) == 1) return "img/prime.png"
+                                    else return ""
+                                })).appendTo(divCard);
+                                j++;
+                                elemento++;
+                            }
+                            else{
+                                j=0;
+                                break;
+                            }
+                        }
+                    }
+                    j=0;
+                }
+            }
+        }); 
     }
 });

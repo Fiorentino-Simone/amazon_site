@@ -266,6 +266,7 @@ a{
 
 .card{
   height: 26rem;
+  width: fit-content;
 }
 
 .dropdown-menu {
