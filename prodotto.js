@@ -43,6 +43,34 @@ $(document).ready(function(){
             $(".marca").text(prodotto.marca);
             $(".materiale").text(prodotto.Materiale);
             $(".maxAcquistabili").text(prodotto["Max Quantità"]);
+            $(".miPiace").text(prodotto["Mi Piace"]);
+            let miPiace = false;
+            $("#like").on("click",function(){
+                if(miPiace == false) miPiace = true;
+                else miPiace = false;
+                if(miPiace){
+                    let like = parseInt($(".miPiace").text());
+                    like++;
+                    let request = inviaRichiesta("GET", "server/miPiace.php",{categoria, id, like});
+                    request.fail(errore);
+                    request.done(function(ris){
+                        $("#like").css({"background-image":"url(img/likeClick.png)",
+                        "background-color" : "transparent"});
+                        $(".miPiace").html(like);
+                    })
+                }
+                else{
+                    let like = parseInt($(".miPiace").text());
+                    like--;
+                    let request = inviaRichiesta("GET", "server/miPiace.php",{categoria, id, like});
+                    request.fail(errore);
+                    request.done(function(ris){
+                        $("#like").css({"background-image":"url(img/like.png)",
+                        "background-color" : "transparent"});
+                        $(".miPiace").html(like);
+                    })
+                }
+            })
             $("#inputQuantità").prop("max",prodotto["Max Quantità"])
             if(prodotto["Disponibilità"]==1) $(".disponibilità").text("Disponibile");
             else $(".disponibilità").text("Non disponibile");

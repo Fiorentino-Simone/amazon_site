@@ -28,7 +28,15 @@ $(document).ready(function(){
                 if (!(categorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
                     categorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
             }
-            creaCards(categorie, dati, true);
+            if(dati.length != 0) creaCards(categorie, dati, true);
+            else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: "Nessun risultato presente, prova a cambiare ricerca",
+                    footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
+                })
+            }
         });
     })
 
