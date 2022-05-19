@@ -55,5 +55,87 @@ $(document).ready(function(){
         window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 
-    
+    //#region FUNZIONAMENTO DELLA SEARCH QUOTE
+    /*let name=[];
+    for (let nomeAzienda of json) {
+        name.push(nomeAzienda.name);
+    }
+    let richiesta = false;
+    $('#searchInput').autocomplete({ //funzione autocomplete della texbox ui jquery
+        source: function(request, response) {
+            let results = $.ui.autocomplete.filter(name, request.term);
+            if(results.length != 0){
+                response(results.slice(0, 6)); //massimo 6 items
+            }
+            else if(richiesta == false && results.length == 0){
+                let promise = inviaChiamataRicerca(request.term);
+                promise.catch(function(err){creazioneSweetAlert("Errore nella promise")});
+                promise.then(function(data){
+                    richiesta = true;
+                    results = data;
+                    if(results.length == 0){
+                        creazioneSweetAlert("Codice inserito non trovato nel Database");
+                    }
+                    else{
+                        response(results.slice(0, 4));
+                    }
+                }); 
+            }
+            else if(richiesta){
+                let result = $.ui.autocomplete.filter(resultsName, request.term);
+                if(result.length == 0) richiesta = false;
+                else{
+                    results = result;
+                    response(results.slice(0, 4));
+                }
+            } 
+        },
+        minLength : 2, //ricerca dopo 2 lettere
+        select : function(event, ui){ //funzione effettiva di ricerca
+            let simbolo = searchSymbol(ui.item.label);
+
+            if(aziende[simbolo]!=null){
+                insertNewSymbol();
+                creaTabella(aziende[simbolo]); //vado a caricarlo dal vettore senza fare ulteriori chiamate
+            }
+            else{
+                //senno devo andare a fare la search quote
+                console.info("CHIAMATA EFFETTUATA: ", keys[index]); 
+                let request = getsAlphaData("GLOBAL_QUOTE", simbolo, keys[index]);
+                request.fail(errore);
+                request.done(function(data){
+                    if(!(data["Global Quote"])){
+                        creazioneSweetAlert("Errore nella richiesta dei dati, aspettare un minuto e poi ricaricare");
+                    }
+                    else{
+                        // --> se funziona la chiave allora bisogna andare a costruire la tabella nuova
+                        insertNewSymbol();
+                        aziende[simbolo] = data["Global Quote"]; //inseriamo una nuova chiave con i dati del nuovo simbolo
+                        console.log("AZIENDE: ",aziende);
+                        creaTabella(aziende[simbolo]);
+                    }
+                })
+            }
+        }
+    });
+
+    function searchSymbol(nome){
+        let symbolTrovato = "";
+        let symbolBool = false;
+        for (let simbolo of json) {
+            if(simbolo.name == nome){
+                symbolBool=true;
+                symbolTrovato=simbolo.symbol;
+            } 
+        }
+        if(symbolBool == false){
+            //vuol dire che la ricerca è da fare non nel json ma nel mio vettore
+            for (let item of resultsSearch) {
+                if(item["NAME"] == nome) symbolTrovato=item["SYMBOL"];
+            }
+        }
+        return symbolTrovato;
+    }
+    //#endregion*/
+
 });

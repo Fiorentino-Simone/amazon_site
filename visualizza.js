@@ -6,6 +6,32 @@ $(document).ready(function(){
     let valueItemSelected = window.location.search;
     valueItemSelected = valueItemSelected.substring(5,valueItemSelected.length);
     visualizzaProdotti(valueItemSelected);
+    let table = valueItemSelected;
+    let itemCorrente = valueItemSelected;
+
+
+    $("#inputSearch").on("keyup", function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            $("#searchInput").trigger("click");
+        }
+    });
+
+    $("#searchInput").on("click",function(){
+        let val = $(".form-control").eq(0).val();
+        let request = inviaRichiesta("GET","server/ricercaElementi.php", {val, table});
+        request.fail(errore);
+        request.done(function(dati){
+            console.log(dati);
+            let categorie=[];
+            for (let prodotto of dati) {
+                if (!(categorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
+                    categorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
+            }
+            creaCards(categorie, dati, true);
+        });
+    })
+
 
     if(valueItemSelected == "alimentari") valueItemSelected = "Alimentazione e cura della casa";
     if(valueItemSelected == "auto") valueItemSelected = "Auto e Moto - Parti e Accessori";
@@ -24,20 +50,17 @@ $(document).ready(function(){
     $(document).prop('title', valueItemSelected + ": AMAZON");
     $(".dropdown-toggle").html(valueItemSelected);
 
-
-
     /*************************************FUNCTIONS *********************************/
+    let categorie=[];
+    let sottocategorie = [];
+    let marche = [];
+    let prezzi = []; //per la ricerca del prezzo massimo
     function visualizzaProdotti(itemSelected){
-        let itemCorrente = itemSelected;
         let request = inviaRichiesta("GET", "server/elencoProdotti.php", {"categoria" : itemSelected});
         request.fail(errore);
         request.done(function(prodotti){
             console.log(prodotti);
             //caricare cards
-            let categorie=[];
-            let sottocategorie = [];
-            let marche = [];
-            let prezzi = []; //per la ricerca del prezzo massimo
             for (let prodotto of prodotti) {
                 if (!(categorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
                     categorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
@@ -225,203 +248,202 @@ $(document).ready(function(){
 
             $("<hr>").appendTo(filterWrapper);
             //BUTTON INVIA RICERCA
-            $("<button>").addClass("btn").appendTo(filterWrapper).text("INVIA RICERCA").on("click",filtraElementi);
+            $("<button>").addClass("btn").appendTo(filterWrapper).text("INVIA RICERCA").on("click",function(){filtraElementi(prodotti)});
 
-
-
-            /******************FUNCTIONS *********/
-            function maxPrice(){
-                let vect = prezzi.map(parseFloat);
-                for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
-                let max = vect[0];
-                for(let i=0; i<vect.length; i++){
-                    if(max < vect[i]) max = vect[i];
-                }
-                return max;
-            }
-
-            function minPrice(){
-                let vect = prezzi.map(parseFloat);
-                for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
-                let min = vect[0];
-                for(let i=0; i< vect.length; i++){
-                    if(min > vect[i]) min = vect[i];
-                }
-                return min;
-            }
-
-            function visualizzaProdotto(){
-                let idProdotto = $(this).prop("id");
-                window.open("prodotto.html?cat="+itemCorrente+"&id="+idProdotto,"_self");
-            }
-
-            function openScopri(table, item){
-                window.open("scopri.html?table="+table+"&cat="+item,"_self");
-            }
-
-            function filtraElementi(){
-                //filtra MARCHE
-                let marcheRicerca = [];
-                $("input:checkbox[name=marche]:checked").each(function(){
-                    marcheRicerca.push($(this).val());
-                });
-
-                //filtra SOTTOCATEGORIE
-                let sottocategorieRicerca = [];
-                $("input:checkbox[name=sottocategorie]:checked").each(function(){
-                    sottocategorieRicerca.push($(this).val());
-                });
-                
-                //Filtra su PRIME
-                let hasPrime;
-                if($('input[name="isPrime"]:checked').prop("id") == "Prime") hasPrime = "1"
-                else hasPrime="0"; 
-
-                let maxPrezzo = $("#range").val();
-
-                let onlyDeals; 
-                if($('input[name="onlyDeals"]:checked').prop("id") == "VisualizzaOfferte") onlyDeals = true;
-                else onlyDeals=false; 
-
-                let prodottiFiltrati = [];
-                let prodottiFiltrati1 = [];
-                let prodottiFiltrati2 = [];
-                let prodottiFiltrati3 = [];
-                
-                if(marcheRicerca.length != 0){
-                    for (let products of prodotti) {
-                        if(marcheRicerca.includes(products["marca"].toLowerCase().trim())) prodottiFiltrati.push(products);
-                    }
-                }
-                else prodottiFiltrati = prodotti;
-                if(sottocategorieRicerca.length != 0){
-                    for (let products of prodottiFiltrati) {
-                        if((sottocategorieRicerca.includes(products["SottoCategoria"].toLowerCase().trim()))){
-                            prodottiFiltrati1.push(products);
-                        } 
-                    }
-                }
-                else prodottiFiltrati1 = prodottiFiltrati;
-                for (let products of prodottiFiltrati1) {
-                    if(products["Prime"] == hasPrime){
-                        prodottiFiltrati2.push(products);
-                    } 
-                }
-                for (let products of prodottiFiltrati2) {
-                    if(parseInt(products["Prezzo"]) <= parseInt(maxPrezzo)){
-                        prodottiFiltrati3.push(products);
-                    } 
-                }
-
-                //nuove categorie
-                let newCategorie = [];
-                for (let prodotto of prodottiFiltrati3) {
-                    if (!(newCategorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
-                        newCategorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
-                }
-                console.log(newCategorie);
-                console.log(prodottiFiltrati3);
-                if(prodottiFiltrati3.length == 0){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: "Nessun risultato presente, prova a cambiare i filtri",
-                        footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
-                    })
-                }
-                else creaCards(newCategorie,  prodottiFiltrati3, true);
-            }
-
-
-
-            function creaCards(categorie, prodotti, filter = false){
-                if(filter){
-                    $("#cardsCategorie").remove();
-                    $(".titoloCategoria").remove();
-                } 
-                let j=0;
-                let elemento = 0;
-                for (let i = 0; i < categorie.length; i++) {
-                    if(i == 0){
-                        let h3 = $("<h3>").css({
-                        "position" : "relative",
-                        "z-index" : "0",
-                        "width" : "100%",
-                        "left" : "20%",
-                        "margin-top" : "2%",
-                        "margin-bottom" : "2%"
-                        }).addClass("firstH3 titoloCategoria");
-                        $(".wrapper").append(h3);
-                        h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemSelected, categorie[i])});
-                        $("<div>").appendTo(".wrapper").eq(0).addClass("row cards").prop("id","cardsCategorie");
-                    }
-                    $("<div>").appendTo("#cardsCategorie").addClass("sezione");
-                    if(i != 0){
-                        let h3 = $("<h3>").css({
-                            "position" : "relative",
-                            "z-index" : "0",
-                            "width" : "100%",
-                            "margin-top" : "2%",
-                            "margin-bottom" : "2%"
-                            }).addClass("firstH3 titoloCategoria");
-                            h3.removeClass("firstH3");
-                            h3.appendTo(".sezione").eq(i);
-                            h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemSelected, categorie[i])});
-                    }
-                    for (let prodotto of prodotti) {
-                        if(prodotto.CategoriaPrincipale.toUpperCase().trim() == categorie[i]){
-                            if(j<ITEMS){
-                                let divSezione = $(".sezione").eq(i);
-                                $("<div>").appendTo(divSezione).addClass("col")
-                                .append($("<div>").addClass("card").append($("<div>")
-                                .css({
-                                    "height" : "200px",
-                                    "text-align" : "center"
-                                }).append($("<img>").addClass("card-img-top immagine").prop("src",prodotto["Immagine"])))
-                                .append($("<div>").addClass("card-body")
-                                .append($("<h7>").addClass("card-title marca bold").text(prodotto.marca))));
-                                let divCard = $(".card-body").eq(elemento);
-                                $("<br>").appendTo(divCard);
-                                let divDescrizione = $("<div>").addClass("card-text").append($("<span>").addClass("descrizione")).appendTo(divCard);
-                                if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
-                                    let newText = prodotto["Descrizione Prodotto"].substring(0,50);
-                                    newText += "..."
-                                    divDescrizione.text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                                }
-                                else divDescrizione.text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
-                                $("<div>").css({
-                                    "width" : "100%",
-                                    "text-align" : "center"
-                                }).append($("<img>").addClass("img-fluid stelle").prop({
-                                    "width" : "90",
-                                    "height" : "90",
-                                    "src" : function(){
-                                        if(parseInt(prodotto["Stelle Recensioni"]) <= 1) return "img/1_stella.png"
-                                        else return "img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png"
-                                    }
-                                })).appendTo(divCard);
-                                let price = parseFloat(prodotto["Prezzo"]).toFixed(2);
-                                price = price.toString().replace(".",",");
-                                $("<div>").addClass("card-text prezzo").text(price+"€").appendTo(divCard);
-                                $("<div>").css({
-                                    "width" : "100%",
-                                    "text-align" : "center",
-                                }).append($("<img>").addClass("img-fluid prime").prop("src",function(){
-                                    if(parseInt(prodotto["Prime"]) == 1) return "img/prime.png"
-                                    else return ""
-                                })).appendTo(divCard);
-                                j++;
-                                elemento++;
-                            }
-                            else{
-                                j=0;
-                                break;
-                            }
-                        }
-                    }
-                    j=0;
-                }
-            }
         }); 
+    }
+
+    /******************FUNCTIONS *********/
+    function maxPrice(){
+        let vect = prezzi.map(parseFloat);
+        for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
+        let max = vect[0];
+        for(let i=0; i<vect.length; i++){
+            if(max < vect[i]) max = vect[i];
+        }
+        return max;
+    }
+
+    function minPrice(){
+        let vect = prezzi.map(parseFloat);
+        for(let i=0; i< vect.length; i++) vect[i] = parseInt(vect[i]);
+        let min = vect[0];
+        for(let i=0; i< vect.length; i++){
+            if(min > vect[i]) min = vect[i];
+        }
+        return min;
+    }
+
+    function visualizzaProdotto(){
+        let idProdotto = $(this).prop("id");
+        window.open("prodotto.html?cat="+itemCorrente+"&id="+idProdotto,"_self");
+    }
+
+    function openScopri(table, item){
+        window.open("scopri.html?table="+table+"&cat="+item,"_self");
+    }
+
+    function filtraElementi(prodotti){
+        //filtra MARCHE
+        let marcheRicerca = [];
+        $("input:checkbox[name=marche]:checked").each(function(){
+            marcheRicerca.push($(this).val());
+        });
+
+        //filtra SOTTOCATEGORIE
+        let sottocategorieRicerca = [];
+        $("input:checkbox[name=sottocategorie]:checked").each(function(){
+            sottocategorieRicerca.push($(this).val());
+        });
+        
+        //Filtra su PRIME
+        let hasPrime;
+        if($('input[name="isPrime"]:checked').prop("id") == "Prime") hasPrime = "1"
+        else hasPrime="0"; 
+
+        let maxPrezzo = $("#range").val();
+
+        let onlyDeals; 
+        if($('input[name="onlyDeals"]:checked').prop("id") == "VisualizzaOfferte") onlyDeals = true;
+        else onlyDeals=false; 
+
+        let prodottiFiltrati = [];
+        let prodottiFiltrati1 = [];
+        let prodottiFiltrati2 = [];
+        let prodottiFiltrati3 = [];
+        
+        if(marcheRicerca.length != 0){
+            for (let products of prodotti) {
+                if(marcheRicerca.includes(products["marca"].toLowerCase().trim())) prodottiFiltrati.push(products);
+            }
+        }
+        else prodottiFiltrati = prodotti;
+        if(sottocategorieRicerca.length != 0){
+            for (let products of prodottiFiltrati) {
+                if((sottocategorieRicerca.includes(products["SottoCategoria"].toLowerCase().trim()))){
+                    prodottiFiltrati1.push(products);
+                } 
+            }
+        }
+        else prodottiFiltrati1 = prodottiFiltrati;
+        for (let products of prodottiFiltrati1) {
+            if(products["Prime"] == hasPrime){
+                prodottiFiltrati2.push(products);
+            } 
+        }
+        for (let products of prodottiFiltrati2) {
+            if(parseInt(products["Prezzo"]) <= parseInt(maxPrezzo)){
+                prodottiFiltrati3.push(products);
+            } 
+        }
+
+        //nuove categorie
+        let newCategorie = [];
+        for (let prodotto of prodottiFiltrati3) {
+            if (!(newCategorie.includes(prodotto.CategoriaPrincipale.toUpperCase().trim())))
+                newCategorie.push(prodotto.CategoriaPrincipale.toUpperCase().trim());
+        }
+        console.log(newCategorie);
+        console.log(prodottiFiltrati3);
+        if(prodottiFiltrati3.length == 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Nessun risultato presente, prova a cambiare i filtri",
+                footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
+            })
+        }
+        else creaCards(newCategorie,  prodottiFiltrati3, true);
+    }
+
+
+
+    function creaCards(categorie, prodotti, filter = false){
+        if(filter){
+            $("#cardsCategorie").remove();
+            $(".titoloCategoria").remove();
+        } 
+        let j=0;
+        let elemento = 0;
+        for (let i = 0; i < categorie.length; i++) {
+            if(i == 0){
+                let h3 = $("<h3>").css({
+                "position" : "relative",
+                "z-index" : "0",
+                "width" : "100%",
+                "left" : "20%",
+                "margin-top" : "2%",
+                "margin-bottom" : "2%"
+                }).addClass("firstH3 titoloCategoria");
+                $(".wrapper").append(h3);
+                h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemCorrente, categorie[i])});
+                $("<div>").appendTo(".wrapper").eq(0).addClass("row cards").prop("id","cardsCategorie");
+            }
+            $("<div>").appendTo("#cardsCategorie").addClass("sezione");
+            if(i != 0){
+                let h3 = $("<h3>").css({
+                    "position" : "relative",
+                    "z-index" : "0",
+                    "width" : "100%",
+                    "margin-top" : "2%",
+                    "margin-bottom" : "2%"
+                    }).addClass("firstH3 titoloCategoria");
+                    h3.removeClass("firstH3");
+                    h3.appendTo(".sezione").eq(i);
+                    h3.html("Sezione " + categorie[i].toLowerCase() + "  "+ "<a> Scopri di più </a>").on("click",function(){openScopri(itemCorrente, categorie[i])});
+            }
+            for (let prodotto of prodotti) {
+                if(prodotto.CategoriaPrincipale.toUpperCase().trim() == categorie[i]){
+                    if(j<ITEMS){
+                        let divSezione = $(".sezione").eq(i);
+                        $("<div>").appendTo(divSezione).addClass("col")
+                        .append($("<div>").addClass("card").append($("<div>")
+                        .css({
+                            "height" : "200px",
+                            "text-align" : "center"
+                        }).append($("<img>").addClass("card-img-top immagine").prop("src",prodotto["Immagine"])))
+                        .append($("<div>").addClass("card-body")
+                        .append($("<h7>").addClass("card-title marca bold").text(prodotto.marca))));
+                        let divCard = $(".card-body").eq(elemento);
+                        $("<br>").appendTo(divCard);
+                        let divDescrizione = $("<div>").addClass("card-text").append($("<span>").addClass("descrizione")).appendTo(divCard);
+                        if(parseInt(prodotto["Descrizione Prodotto"].length) >= 50){
+                            let newText = prodotto["Descrizione Prodotto"].substring(0,50);
+                            newText += "..."
+                            divDescrizione.text(newText).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
+                        }
+                        else divDescrizione.text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",visualizzaProdotto);
+                        $("<div>").css({
+                            "width" : "100%",
+                            "text-align" : "center"
+                        }).append($("<img>").addClass("img-fluid stelle").prop({
+                            "width" : "90",
+                            "height" : "90",
+                            "src" : function(){
+                                if(parseInt(prodotto["Stelle Recensioni"]) <= 1) return "img/1_stella.png"
+                                else return "img/"+parseInt(prodotto["Stelle Recensioni"])+"_stella.png"
+                            }
+                        })).appendTo(divCard);
+                        let price = parseFloat(prodotto["Prezzo"]).toFixed(2);
+                        price = price.toString().replace(".",",");
+                        $("<div>").addClass("card-text prezzo").text(price+"€").appendTo(divCard);
+                        $("<div>").css({
+                            "width" : "100%",
+                            "text-align" : "center",
+                        }).append($("<img>").addClass("img-fluid prime").prop("src",function(){
+                            if(parseInt(prodotto["Prime"]) == 1) return "img/prime.png"
+                            else return ""
+                        })).appendTo(divCard);
+                        j++;
+                        elemento++;
+                    }
+                    else{
+                        j=0;
+                        break;
+                    }
+                }
+            }
+            j=0;
+        }
     }
 });
