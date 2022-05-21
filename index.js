@@ -81,6 +81,11 @@ $(document).ready(function(){
                 console.log(datiQuery);
                 //salvare l'utente nel session storage 
                 window.localStorage.setItem('user' + idUtente, JSON.stringify(datiQuery));
+                let nome = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+                $(".utente").html("Ciao, " + nome);
+                $(".indirizzo").html(values.Indirizzo);
+                userActive = true;
+                $(".buttonAccedi").prop("href","#");
             })  
         }
     }
@@ -95,9 +100,10 @@ $(document).ready(function(){
         let values = JSON.parse(window.localStorage.getItem(user));
         let nome = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
         $(".utente").html("Ciao, " + nome);
-        $(".indirizzo").html(values.Indirizzo);
+        $(".indirizzo").html(values.Indirizzo).css("margin-left","5px");
         userActive = true;
         idUser = values.Id;
         console.log(idUser);
+        $(".buttonAccedi").prop("href","#");
     }
 });

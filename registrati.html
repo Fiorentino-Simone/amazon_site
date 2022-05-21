@@ -24,7 +24,7 @@
           <p>Spedizione gratuita su milioni di articoli. Ottieni il meglio dallo shopping e dall'intrattenimento con Prime. Goditi prezzi bassi e grandi offerte sulla più ampia selezione di elementi essenziali di tutti i giorni e altri prodotti, tra cui moda, casa, bellezza, elettronica, dispositivi Alexa, articoli sportivi, giocattoli, automobili, animali domestici, bambini, libri, videogiochi, strumenti musicali, forniture per ufficio , e altro ancora.</p>
         </div>
         <div class="col-md-7 form-part">
-          <div class="row">
+          <div class="row" style="margin-bottom: 10%;">
             <p class="signinlink">Ho gia un account Amazon <a href="login.html">Accedi</a></p>
             <div class="col-lg-8 col-md-11 formcol mx-auto" style="margin-left: 20% !important;">
               <h3 style="margin-left: -10%;">Registrati ad Amazon</h3>
@@ -33,32 +33,39 @@
                   <span class="input-group-text icon-properties">
                     <span class="fa-solid fa-user-large"></span>
                   </span>      
-                  <input type="text" class="form-control" id="floatingInput" placeholder="Inserisci Nome e Cognome">
-                  <label for="floatingInput">Nome e Cognome</label>
+                  <input type="text" class="form-control" id="Nominativo" placeholder="Inserisci Nome e Cognome">
+                  <label for="Nominativo">Nome e Cognome</label>
                 </div>
                 <div class="form-floating mb-3">
                   <span class="input-group-text icon-properties">
                     <span class="fa-solid fa-phone"></span>
                   </span>    
-                  <input type="tel" class="form-control" id="floatingInput" placeholder="Inserisci il numero di telefono">
-                  <label for="floatingInput">Numero di telefono</label>
+                  <input type="tel" class="form-control" id="Telefono" placeholder="Inserisci il numero di telefono">
+                  <label for="Telefono">Numero di telefono</label>
                 </div>
                 <div class="form-floating mb-3">
                   <span class="input-group-text icon-properties">
                     <span class="fa-solid fa-envelope"></span>
                   </span>
-                  <input type="email" class="form-control" id="floatingInput" placeholder="Inserisci un Indirizzo Email">
-                  <label for="floatingInput">Indirizzo Email</label>
+                  <input type="email" class="form-control" id="Email" placeholder="Inserisci un Indirizzo Email">
+                  <label for="Email">Indirizzo Email</label>
                 </div>
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                   <span class="icon-properties input-group-text">
                     <span class="fa-solid fa-key"></span>
                   </span> 
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                  <label for="floatingPassword">Password</label>
+                  <input type="password" class="form-control" id="Password" placeholder="Password">
+                  <label for="Password">Password</label>
                 </div>
                 <div class="form-floating">
-                  <button type="submit" class="btn btn-primary" style="width: 113%; position: absolute; left: -13%;">Crea un account</button>
+                  <span class="icon-properties input-group-text">
+                    <span class="fa-solid fa-house"></span>
+                  </span> 
+                  <input type="text" class="form-control" id="Indirizzo" placeholder="Indirizzo">
+                  <label for="Indirizzo">Indirizzo di consegna</label>
+                </div>
+                <div class="form-floating">
+                  <button type="button" id="btnRegistrati" class="btn btn-primary" style="width: 113%; position: absolute; left: -13%;">Crea un account</button>
                 </div>
               </form>
             </div>
@@ -77,7 +84,9 @@
         crossorigin="anonymous"></script>
     <!--LINK A DELLE LIBRERIE IN RETE, li inseriamo dentro il body siccome bisogna seguire DETTAGLIATAMENTE la guida-->
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>	
+    <script src="server/libreria.js"></script>
     <script src="page.js"></script>	
+    <script src="registrati.js"></script>
 <!--#endregion -->
 </body>
 </html>
