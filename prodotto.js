@@ -8,7 +8,22 @@ $(document).ready(function(){
 
     let prodotto = window.location.search;
     let catProdotto = prodotto.substring(5, prodotto.indexOf("&"));
-    let idProdotto = prodotto.substring(prodotto.indexOf("&") + 4, prodotto.length);
+    let idProdotto;
+    if(window.location.search.includes("idUtente")){
+        let idAndUtente = prodotto.substring(prodotto.indexOf("&") + 4, prodotto.length);
+        idProdotto = idAndUtente.substring(0, idAndUtente.indexOf("&"));
+        let idUtente = idAndUtente.substring(idAndUtente.indexOf("&") + 10, idAndUtente.length);
+        console.log("ID PRODOTTO" ,idProdotto);
+        console.log("ID UTENTE " , idUtente);
+        let values = JSON.parse(window.localStorage.getItem('user' + idUtente));
+        let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+        $(".utente").html("Ciao, " + nomeUtente);
+        $(".indirizzo").html(values.Indirizzo);
+    }
+    else{
+        idProdotto = prodotto.substring(prodotto.indexOf("&") + 4, prodotto.length);
+    }
+    console.log("ID PRODOTTO" ,idProdotto);
     visualizzaProdotto(catProdotto, parseInt(idProdotto));
 
 

@@ -1,6 +1,8 @@
 "use strict";
 
 $(document).ready(function(){
+
+    
     let buttons = `.buttonHeader, 
     .buttonAccedi, 
     .buttonOrdini,
@@ -33,12 +35,8 @@ $(document).ready(function(){
     function(){
         $(this).show();
     });
-
     let items = $(".categorie .dropdown-item");
     let itemSelected;
-    let userActive = false;
-    let idUser;
-
     items.on("click",function(){
         itemSelected = $(this).text();
         console.log(itemSelected);
@@ -55,49 +53,11 @@ $(document).ready(function(){
         if(itemSelected == "Grandi elettrodomestici") itemSelected = "grandiElettrodomestici";
 
 
-        let options =  "?cat="+itemSelected;
-        if(window.location.search.includes("id") || userActive) {
-            if(window.location.search.includes("id")) {
-                let idUtente = window.location.search;
-                idUtente = idUtente.substring(4,idUtente.length);
-                options += "&idUtente="+idUtente;
-            }
-            else if(userActive) options += "&idUtente="+idUser;
-        }
-        window.open("visualizzazione.html" + options, "_self");
+        window.open("visualizzazione.html?cat="+itemSelected,"_self");
     });
 
+
     
-    if(window.location.search.includes("id")){
-        let idUtente = window.location.search;
-        idUtente = idUtente.substring(4,idUtente.length);
-        console.log("ID UTENTE: ",idUtente);
-
-        if(window.localStorage.getItem('user' + idUtente) == null){
-            let request = inviaRichiesta("GET","server/richiediUtente.php",{idUtente});
-            request.fail(errore);
-            request.done(function(dati){
-                let datiQuery = dati[0];
-                console.log(datiQuery);
-                //salvare l'utente nel session storage 
-                window.localStorage.setItem('user' + idUtente, JSON.stringify(datiQuery));
-            })  
-        }
-    }
-
-    let keysLocalStorage = Object.keys(localStorage);
-    let userKeys = [];
-    for (let i = 0; i < keysLocalStorage.length; i++) {
-        if(keysLocalStorage[i].includes("user")) userKeys.push(keysLocalStorage[i]);
-    }
-    if(userKeys.length != 0){
-        let user = userKeys[0];
-        let values = JSON.parse(window.localStorage.getItem(user));
-        let nome = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
-        $(".utente").html("Ciao, " + nome);
-        $(".indirizzo").html(values.Indirizzo);
-        userActive = true;
-        idUser = values.Id;
-        console.log(idUser);
-    }
 });
+
+

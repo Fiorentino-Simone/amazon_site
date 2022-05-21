@@ -5,8 +5,18 @@ const ELEMENTI = 3;
 $(document).ready(function(){
     let sezione = window.location.search;
     let tableSezione = sezione.substring(7, sezione.indexOf("&"));
-    let categoria = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
-
+    let categoria;
+    if(window.location.search.includes("idUtente")){
+        let categoriaAndUtente = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
+        categoria = categoriaAndUtente.substring(0, categoriaAndUtente.indexOf("&"));
+        let idUtente = categoriaAndUtente.substring(categoriaAndUtente.indexOf("&")+10, categoriaAndUtente.length);
+        let values = JSON.parse(window.localStorage.getItem('user' + idUtente));
+        let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+        $(".utente").html("Ciao, " + nomeUtente);
+        $(".indirizzo").html(values.Indirizzo);
+    }
+    else categoria = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
+    
     visualizzaProdottiPerCategoria(tableSezione, categoria);
 
     if(tableSezione == "alimentari") tableSezione = "Alimentazione e cura della casa";
@@ -252,7 +262,13 @@ $(document).ready(function(){
         
             function visualizzaProdotto(){
                 let idProdotto = $(this).prop("id");
-                window.open("prodotto.html?cat="+itemCorrente+"&id="+idProdotto,"_self");
+                let query = "prodotto.html?cat="+itemCorrente+"&id="+idProdotto;
+                if(window.location.search.includes("idUtente")){
+                    let categoriaAndUtente = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
+                    let idUtente = categoriaAndUtente.substring(categoriaAndUtente.indexOf("&")+10, categoriaAndUtente.length);        
+                    query += "&idUtente=" + idUtente;
+                }
+                window.open(query, "_self");
             }
 
             function filtraElementi(){

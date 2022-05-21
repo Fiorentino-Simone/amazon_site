@@ -3,11 +3,22 @@
 const ITEMS = 5;
 
 $(document).ready(function(){
-    let valueItemSelected = window.location.search;
-    valueItemSelected = valueItemSelected.substring(5,valueItemSelected.length);
+    let options = window.location.search;
+    let valueItemSelected;
+    if(window.location.search.includes("&")){
+        valueItemSelected = options.substring(5, options.indexOf("&"));
+        let nome = options.substring(options.indexOf("&")+10,options.length);
+        let values = JSON.parse(window.localStorage.getItem('user' + nome));
+        let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+        $(".utente").html("Ciao, " + nomeUtente);
+        $(".indirizzo").html(values.Indirizzo);
+    }
+    else valueItemSelected = options.substring(5, options.length);
+    console.log(valueItemSelected);
     visualizzaProdotti(valueItemSelected);
     let table = valueItemSelected;
     let itemCorrente = valueItemSelected;
+    
 
 
     $("#inputSearch").on("keyup", function(event) {
@@ -284,11 +295,21 @@ $(document).ready(function(){
 
     function visualizzaProdotto(){
         let idProdotto = $(this).prop("id");
-        window.open("prodotto.html?cat="+itemCorrente+"&id="+idProdotto,"_self");
+        let query = "prodotto.html?cat="+itemCorrente+"&id="+idProdotto;
+        if(window.location.search.includes("&")){
+            let idUtente = options.substring(options.indexOf("&")+10,options.length);        
+            query += "&idUtente=" + idUtente;
+        }
+        window.open(query, "_self");
     }
 
     function openScopri(table, item){
-        window.open("scopri.html?table="+table+"&cat="+item,"_self");
+        let query = "scopri.html?table="+table+"&cat="+item;
+        if(window.location.search.includes("&")){
+            let idUtente = options.substring(options.indexOf("&")+10,options.length);        
+            query += "&idUtente=" + idUtente;
+        }
+        window.open(query,"_self");
     }
 
     function filtraElementi(prodotti){
