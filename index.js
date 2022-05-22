@@ -135,4 +135,12 @@ $(document).ready(function(){
         }
         else window.open("login.html","_self");
     })    
+
+
+    $(".btnOrdini").on("click",function(){
+        if(userActive || window.location.search.includes("idUtente")){
+            window.open("ordini.html?idUtente="+idUser,"_self");
+        }
+        else window.open("login.html","_self");
+    })    
 });
