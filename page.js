@@ -35,8 +35,12 @@ $(document).ready(function(){
     function(){
         $(this).show();
     });
+
     let items = $(".categorie .dropdown-item");
     let itemSelected;
+    let userActive = false;
+    let idUser;
+
     items.on("click",function(){
         itemSelected = $(this).text();
         console.log(itemSelected);
@@ -53,8 +57,34 @@ $(document).ready(function(){
         if(itemSelected == "Grandi elettrodomestici") itemSelected = "grandiElettrodomestici";
 
 
-        window.open("visualizzazione.html?cat="+itemSelected,"_self");
+        let options =  "?cat="+itemSelected;
+        if(window.location.search.includes("idUtente") || userActive) {
+            if(window.location.search.includes("idUtente")) {
+                let idUtente = window.location.search;
+                idUtente = idUtente.substring(idUtente.indexOf("idUtente") + 9,idUtente.length);
+                options += "&idUtente="+idUtente;
+            }
+            else if(userActive) options += "&idUtente="+idUser;
+        }
+        window.open("visualizzazione.html" + options, "_self");
     });
+
+    /*let keysLocalStorage = Object.keys(localStorage);
+    let userKeys = [];
+    for (let i = 0; i < keysLocalStorage.length; i++) {
+        if(keysLocalStorage[i].includes("user")) userKeys.push(keysLocalStorage[i]);
+    }
+    if(userKeys.length != 0){
+        let user = userKeys[0];
+        let values = JSON.parse(window.localStorage.getItem(user));
+        let nome = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+        $(".utente").html("Ciao, " + nome);
+        $(".indirizzo").html(values.Indirizzo).css("margin-left","5px");
+        userActive = true;
+        idUser = values.Id;
+        console.log(idUser);
+        $(".buttonAccedi").prop("href","#");
+    }*/
 
 
     

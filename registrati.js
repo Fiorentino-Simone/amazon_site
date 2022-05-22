@@ -27,7 +27,7 @@ $(document).ready(function(){
                             let requestUser = inviaRichiesta("GET","server/richiediUtenteEmail.php",{email});
                             requestUser.fail(errore);
                             requestUser.done(function(dati){
-                                window.open("index.html?id="+dati[0].Id,"_self");
+                                window.open("index.html?idUtente="+dati[0].Id,"_self");
                             });
                         }
                     });

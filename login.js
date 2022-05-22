@@ -11,7 +11,7 @@ $(document).ready(function(){
             let request = inviaRichiesta("GET", "server/login.php", param);
             request.fail(errore);
             request.done(function(dati){
-                window.open("index.html?id="+dati[0].Id,"_self");
+                window.open("index.html?idUtente="+dati[0].Id,"_self");
             })
         }
         else

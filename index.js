@@ -1,5 +1,8 @@
 "use strict";
 
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
 $(document).ready(function(){
     let buttons = `.buttonHeader, 
     .buttonAccedi, 
@@ -18,6 +21,8 @@ $(document).ready(function(){
     .buttonVideogiochi div,
     .buttonElettronica div,
     .buttonCucina div`;
+
+    $(".buttonAccedi").prop("href","login.html");
 
     $(buttons).on("mouseenter",function(){
         $(this).css("border","1px solid white");
@@ -56,10 +61,10 @@ $(document).ready(function(){
 
 
         let options =  "?cat="+itemSelected;
-        if(window.location.search.includes("id") || userActive) {
-            if(window.location.search.includes("id")) {
+        if(window.location.search.includes("idUtente") || userActive) {
+            if(window.location.search.includes("idUtente")) {
                 let idUtente = window.location.search;
-                idUtente = idUtente.substring(4,idUtente.length);
+                idUtente = idUtente.substring(idUtente.indexOf("idUtente") + 9,idUtente.length);
                 options += "&idUtente="+idUtente;
             }
             else if(userActive) options += "&idUtente="+idUser;
@@ -68,9 +73,9 @@ $(document).ready(function(){
     });
 
     
-    if(window.location.search.includes("id")){
+    if(window.location.search.includes("idUtente")){
         let idUtente = window.location.search;
-        idUtente = idUtente.substring(4,idUtente.length);
+        idUtente = idUtente.substring(idUtente.indexOf("idUtente") + 9, idUtente.length);
         console.log("ID UTENTE: ",idUtente);
 
         if(window.localStorage.getItem('user' + idUtente) == null){
@@ -81,11 +86,10 @@ $(document).ready(function(){
                 console.log(datiQuery);
                 //salvare l'utente nel session storage 
                 window.localStorage.setItem('user' + idUtente, JSON.stringify(datiQuery));
-                let nome = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
+                let nome = datiQuery.Nominativo.substring(0,datiQuery.Nominativo.indexOf(" "));
                 $(".utente").html("Ciao, " + nome);
-                $(".indirizzo").html(values.Indirizzo);
+                $(".indirizzo").html(datiQuery.Indirizzo).css("margin-left","5px");;
                 userActive = true;
-                $(".buttonAccedi").prop("href","#");
             })  
         }
     }
@@ -104,6 +108,22 @@ $(document).ready(function(){
         userActive = true;
         idUser = values.Id;
         console.log(idUser);
-        $(".buttonAccedi").prop("href","#");
     }
+
+    $(".buttonAccedi").eq(0).on("click",function(){
+        if(userActive || window.location.search.includes("idUtente")){
+            $(this).prop({
+                "data-toggle": "modal",
+                "data-target": "#ListeLogout"
+            })
+            $("#ListeLogout").modal("show");
+        }
+        else window.open("login.html","_self");
+    });
+
+    $("#btnLogout").on("click",function(){
+        window.localStorage.removeItem("user"+idUser);
+        window.location.reload();
+    })
+    
 });
