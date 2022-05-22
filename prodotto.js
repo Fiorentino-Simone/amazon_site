@@ -7,24 +7,73 @@ $(document).ready(function(){
     $("input[type='number']").inputSpinner()
 
     let prodotto = window.location.search;
+    let userActive = false;
     let catProdotto = prodotto.substring(5, prodotto.indexOf("&"));
     let idProdotto;
+    let idUtente;
     if(window.location.search.includes("idUtente")){
         let idAndUtente = prodotto.substring(prodotto.indexOf("&") + 4, prodotto.length);
         idProdotto = idAndUtente.substring(0, idAndUtente.indexOf("&"));
-        let idUtente = idAndUtente.substring(idAndUtente.indexOf("&") + 10, idAndUtente.length);
+        idUtente = idAndUtente.substring(idAndUtente.indexOf("&") + 10, idAndUtente.length);
         console.log("ID PRODOTTO" ,idProdotto);
         console.log("ID UTENTE " , idUtente);
         let values = JSON.parse(window.localStorage.getItem('user' + idUtente));
         let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
         $(".utente").html("Ciao, " + nomeUtente);
         $(".indirizzo").html(values.Indirizzo);
+        userActive = true;
     }
     else{
         idProdotto = prodotto.substring(prodotto.indexOf("&") + 4, prodotto.length);
     }
     console.log("ID PRODOTTO" ,idProdotto);
+
+    $(".buttonAccedi").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            $(this).prop({
+                "data-toggle": "modal",
+                "data-target": "#ListeLogout"
+            })
+            $("#ListeLogout").modal("show");
+        }
+        else window.open("login.html","_self");
+    });
+
+    $("#btnLogout").on("click",function(){
+        window.localStorage.removeItem("user"+idUtente);
+        window.open("index.html","_self");
+    })
+
+    let carrelloUser = JSON.parse(window.localStorage.getItem("carrello_user" + idUtente));
+    if(carrelloUser != null){
+        $(".numeroProdotti").eq(0).text(carrelloUser.length);
+    }
+
+    $(".buttonCarrello").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){                
+            window.open("carrello.html?idUtente="+idUtente,"_self");
+        }
+        else window.open("login.html","_self");
+    })  
+
     visualizzaProdotto(catProdotto, parseInt(idProdotto));
+
+    if(catProdotto == "alimentari") catProdotto = "Alimentazione e cura della casa";
+    if(catProdotto == "auto") catProdotto = "Auto e Moto - Parti e Accessori";
+    if(catProdotto == "cancelleria") catProdotto = "Cancelleria e prodotti per ufficio";
+    if(catProdotto == "casa") catProdotto = "Casa e cucina";
+    if(catProdotto == "CD") catProdotto = "CD e vinili";
+    if(catProdotto == "dispositiviAmazon") catProdotto = "Dispositivi Amazon";
+    if(catProdotto == "faiDaTe") catProdotto = "Fai da te";
+    if(catProdotto == "film") catProdotto = "Film e TV";
+    if(catProdotto == "giardinaggio") catProdotto = "Giardino e giardinaggio";
+    if(catProdotto == "giochi") catProdotto = "Giochi e giocattoli";
+    if(catProdotto == "grandiElettrodomestici") catProdotto = "Grandi elettrodomestici";
+
+
+    
+    $(".dropdown-toggle").html(catProdotto);
+
 
 
     /*******************************FUNCTIONS ********************************/
@@ -106,7 +155,53 @@ $(document).ready(function(){
 
             $(".consegna").text(giorno).css("font-weight","bold");
             if(prodotto["Disponibilità"]!=1) $(".disponibilitàTesto").text("Non disponibile").css("color","red");
+        
+
+            $("#btnAcquista").on("click",function(){
+                if(userActive){
+                    if(window.localStorage.getItem('carrello_user' + idUtente) == null){
+                        //devo creare il carrello per quel utente
+                        let array = [];
+                        array.push(aggiungiAlCarrello());
+                        window.localStorage.setItem('carrello_user' + idUtente, JSON.stringify(array));
+                        window.open("carrello.html?idUtente="+idUtente,"_self");
+                    }
+                    else{
+                        let carrello = JSON.parse(window.localStorage.getItem('carrello_user' + idUtente));
+                        carrello.push(aggiungiAlCarrello());
+                        window.localStorage.removeItem('carrello_user'+idUtente);
+                        window.localStorage.setItem('carrello_user'+idUtente, JSON.stringify(carrello));
+                        window.open("carrello.html?idUtente="+idUtente,"_self");
+                    }
+                }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: "Devi prima fare l'accesso per visualizzare il carrello",
+                        footer: '<a>Se riscontri problematiche, contattami !</a>'
+                    })
+                }
+            })
+        
+            function aggiungiAlCarrello(){
+                let vect = {
+                    "Immagine" : prodotto.Immagine,
+                    "table" : categoria,
+                    "Descrizione Prodotto" : prodotto["Descrizione Prodotto"],
+                    "IDProdotto" : id,
+                    "Tempo di Consegna" : prodotto["Tempo di Consegna"], 
+                    "marca" : prodotto.marca,
+                    "Prezzo" : prodotto["Prezzo"],
+                    "Prime" : prodotto["Prime"],
+                    "quantità" : $("#inputQuantità").val()
+                }
+                return vect;
+            }
+        
         });
     }
+
+    
     
 });

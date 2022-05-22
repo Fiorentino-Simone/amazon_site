@@ -73,7 +73,7 @@
                 </div>
             </li>
             <li class="nav-item d-flex">
-                <a class="buttonAccedi" href="login.html">
+                <a class="buttonAccedi">
                     <div>
                         <span class="w utente">Ciao, Accedi</span>
                         <span style="font-weight: bold;" class="w">Account e liste</span>
@@ -91,7 +91,7 @@
             <li class="nav-item d-flex">
                 <a class="buttonCarrello">
                     <div>
-                        <span style="color: #f08804; font-weight: bold;">0</span>
+                        <span style="color: #f08804; font-weight: bold;" class="numeroProdotti">0</span>
                         <img src="img/carrello.png" style="width: 80%; height: 90%;" class="d-inline-block align-text-top">
                     </div>
                     <span style="font-weight: bold;" class="w carrello">Carrello</span>
@@ -314,6 +314,32 @@
             </section>
         </div>
     </footer>-->
+
+    
+    <!-- Modal -->
+	<div class="modal fade" id="ListeLogout" tabindex="-1" aria-labelledby="ListeLogout" aria-hidden="true" role="dialog">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="ListeLogout"><span class="utente"></span></h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div>Seleziona una delle seguenti opzioni oppure chiudi la modale</div>
+				<div style="display: grid;">
+					<button type="button" class="btn" id="btnListe">Visualizza le tue liste</button>
+					<button type="button" class="btn" id="btnChangePassword">Modifica la tua password</button>
+					<button type="button" class="btn" id="btnOrdini">Visualizza i tuoi ordini</button>
+					<button type="button" class="btn" id="btnLogout">Esci dal tuo account</button>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
 
 
     <!--#region SCRIPT -->

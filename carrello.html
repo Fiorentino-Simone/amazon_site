@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-	<link rel="stylesheet" href="index.css"/>
+	<link rel="stylesheet" href="carrello.css"/>
 	<link rel="icon" type="image/jpg" href="img/logo.jpg" />
 </head>
 
@@ -181,291 +181,133 @@
 		</div>
 	</div>
 
-	
+    <div class="wrapper" style="background-color: #fff;">
+        <h1>Carrello</h1>
+        <a>Deseleziona tutti gli articoli</a>
+		<h6 style = "display: none;"></h6>
+        <div class="row" id="cardsArticoli" style="margin-left: 20%;">
 
-	<div class="wrapper">
-		<div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-			<div class="carousel-inner">
-			  <div class="carousel-item active">
-				<img src="img/1_Image.jpg" class="d-block w-100">
-			  </div>
-			  <div class="carousel-item">
-				<img src="img/2_Image.jpg" class="d-block w-100">
-			  </div>
-			  <div class="carousel-item">
-				<img src="img/3_Image.jpg" class="d-block w-100">
-			  </div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-			  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			  <span class="visually-hidden">Next</span>
-			</button>
-		</div>
-		<div class="row row-cols-1 row-cols-md-4 cards" id="cardsWrapper">
-			<div class="col">
-			  	<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Prodotti Usati e Come Nuovi</h5>
+        </div>
+
+		<!--footer-->
+		<footer class="footer" style="margin-top: 2rem;">
+			<div class="container">
+				<div class="row">
+					<div class=" col-sm-4 col-md col-sm-4  col-12 col">
+						<h5 class="headin5_amrc w pt2">Per conoscerci meglio</h5>
+						<p>Opportunità di lavoro</p>
+						<p>Informazioni su Amazon</p>
+						<p>Sostenibilità</p>
+						<p>AGCM - Impegni Amazon Procedimento PS 11716</p>
+						<p>Amazon Science</p>
 					</div>
-					<img src="img/4_Image.jpg" class="card-img-top">
-					<div class="card-body">
-						<a  class="card-link">Scopri le offerte</a>
-					</div>  
-			  	</div>
-			</div>
-			<div class="col">
-			  	<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Pagina delle Offerte</h5>
-					</div>
-					<img src="img/11_image.jpg" class="card-img-top">
-					<div class="card-body">
-						<a  class="card-link">Scopri le offerte</a>
-					</div>  
+				<div class=" col-sm-4 col-md  col-6 col">
+					<h5 class="headin5_amrc w pt2">Guadagna con amazon</h5>
+					<ul class="footerUl">
+						<li><a >Vendi su Amazon</a></li>
+						<li><a >Vendi su Amazon Business</a></li>
+						<li><a >Vendi su Amazon Handmade</a></li>
+						<li><a >Diventa affiliato</a></li>
+						<li><a >Logistica di Amazon</a></li>
+						<li><a >Pubblica con noi da indipendente</a></li>
+						<li><a >Promuovi i tuoi prodotti</a></li>
+						<li><a >Ospita un hub Amazon</a></li>
+						<li><a >Scopri di più su Make Money with Us</a></li>
+					</ul>
 				</div>
-			</div>
-			<div class="col">
-			  <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Scopri nuovi Libri</h5>
+			
+			
+				<div class=" col-sm-4 col-md  col-6 col">
+					<h5 class="headin5_amrc w pt2">Metodi di pagamento Amazon</h5>
+					<ul class="footerUl">
+						<li><a >Metodi di pagamento</a></li>
+						<li><a >Convertitore di Valuta Amazon</a></li>
+						<li><a >Buoni regalo</a></li>
+						<li><a >Ricarica online</a></li>
+						<li><a >Ricarica in cassa</a></li>
+					</ul>
 				</div>
-				<img src="img/5_Image.jpg" class="card-img-top">
-				<div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				</div>  
-			  </div>
-			</div>
-			<div class="col">
-				<div class="card">
-				  <div class="card-body">
-					<h5 class="card-title">Film e Serie TV</h5>
-				  </div>
-				  <img src="img/6_Image.jpg" class="card-img-top">
-				  <div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				  </div>  
+			
+			
+				<div class=" col-sm-4 col-md  col-12 col">
+					<h5 class="headin5_amrc w pt2">Bisogno di aiuto?</h5>		
+					<ul class="footerUl">
+						<li><a >Visualizza o traccia un ordine</a></li>
+						<li><a >Costi e modalità di spedizione</a></li>
+						<li><a >Amazon Prime</a></li>
+						<li><a >Restituisci o sostituisci articoli</a></li>
+						<li><a >Riciclo</a></li>
+						<li><a >I miei contenuti e dispositivi</a></li>
+						<li><a >App Amazon Mobile</a></li>
+						<li><a >Amazon Assistant</a></li>
+						<li><a >Servizio Clienti</a></li>
+						<li><a >IVA e fatturazione</a></li>
+						<li><a >Garanzia legale</a></li>
+					</ul>
 				</div>
-			</div>
-		</div>
-
-		<div class="row row-cols-1 row-cols-md-4 cards" id="cardsWrapper2" style="padding-bottom: 5rem;">
-			<div class="col">
-				<div class="card">
-				  <div class="card-body">
-					  <h5 class="card-title">Prodotti della cartoleria</h5>
-				  </div>
-				  <img src="img/7_Image.jpg" class="card-img-top">
-				  <div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				  </div>  
-				</div>
-			  </div>
-			<div class="col">
-			  <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Scopri PRIME</h5>
-				</div>
-				<img src="img/8_Image.jpg" class="card-img-top">
-				<div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				</div>  
-			  </div>
-			</div>
-			<div class="col">
-			  <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Prodotti per la Casa</h5>
-				</div>
-				<img src="img/16_Image.jpg" class="card-img-top">
-				<div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				</div>  
-			  </div>
-			</div>
-			<div class="col">
-				<div class="card">
-				  <div class="card-body">
-					<h5 class="card-title">Prodotti tecnologici</h5>
-				  </div>
-				  <img src="img/10_image.jpg" class="card-img-top">
-				  <div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				 </div>  
-				</div>
-			</div>
-		</div>
-
-		<div class="row row-cols-1 row-cols-md-4 cards" id="cardsWrapper3" style="padding-bottom: 5rem;">
-			<div class="col">
-				<div class="card">
-				  <div class="card-body">
-					  <h5 class="card-title">Prodotti Sportivi</h5>
-				  </div>
-				  <img src="img/12_Image.jpg" class="card-img-top">
-				  <div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				  </div>  
-				</div>
-			  </div>
-			<div class="col">
-			  <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Musica</h5>
-				</div>
-				<img src="img/14_Image.jpg" class="card-img-top">
-				<div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				</div>  
-			  </div>
-			</div>
-			<div class="col">
-			  <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Vestiti</h5>
-				</div>
-				<img src="img/15_Image.jpg" class="card-img-top">
-				<div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				</div>  
-			  </div>
-			</div>
-			<div class="col">
-				<div class="card">
-				  <div class="card-body">
-					<h5 class="card-title">Giocattoli</h5>
-				  </div>
-				  <img src="img/17_image.jpg" class="card-img-top">
-				  <div class="card-body">
-					<a  class="card-link">Scopri le offerte</a>
-				 </div>  
-				</div>
-			</div>
-		</div>
-	
-	<!--footer-->
-	<footer class="footer" style="position: absolute; top: 110rem; z-index: 4;">
-		<div class="container">
-			<div class="row">
-				<div class=" col-sm-4 col-md col-sm-4  col-12 col">
-					<h5 class="headin5_amrc w pt2">Per conoscerci meglio</h5>
-					<p>Opportunità di lavoro</p>
-					<p>Informazioni su Amazon</p>
-					<p>Sostenibilità</p>
-					<p>AGCM - Impegni Amazon Procedimento PS 11716</p>
-					<p>Amazon Science</p>
-				</div>
-			<div class=" col-sm-4 col-md  col-6 col">
-				<h5 class="headin5_amrc w pt2">Guadagna con amazon</h5>
-				<ul class="footerUl">
-					<li><a >Vendi su Amazon</a></li>
-					<li><a >Vendi su Amazon Business</a></li>
-					<li><a >Vendi su Amazon Handmade</a></li>
-					<li><a >Diventa affiliato</a></li>
-					<li><a >Logistica di Amazon</a></li>
-					<li><a >Pubblica con noi da indipendente</a></li>
-					<li><a >Promuovi i tuoi prodotti</a></li>
-					<li><a >Ospita un hub Amazon</a></li>
-					<li><a >Scopri di più su Make Money with Us</a></li>
-				</ul>
-			</div>
-		
-		
-			<div class=" col-sm-4 col-md  col-6 col">
-				<h5 class="headin5_amrc w pt2">Metodi di pagamento Amazon</h5>
-				<ul class="footerUl">
-					<li><a >Metodi di pagamento</a></li>
-					<li><a >Convertitore di Valuta Amazon</a></li>
-					<li><a >Buoni regalo</a></li>
-					<li><a >Ricarica online</a></li>
-					<li><a >Ricarica in cassa</a></li>
-				</ul>
-			</div>
-		
-		
-			<div class=" col-sm-4 col-md  col-12 col">
-				<h5 class="headin5_amrc w pt2">Bisogno di aiuto?</h5>		
-				<ul class="footerUl">
-					<li><a >Visualizza o traccia un ordine</a></li>
-					<li><a >Costi e modalità di spedizione</a></li>
-					<li><a >Amazon Prime</a></li>
-					<li><a >Restituisci o sostituisci articoli</a></li>
-					<li><a >Riciclo</a></li>
-					<li><a >I miei contenuti e dispositivi</a></li>
-					<li><a >App Amazon Mobile</a></li>
-					<li><a >Amazon Assistant</a></li>
-					<li><a >Servizio Clienti</a></li>
-					<li><a >IVA e fatturazione</a></li>
-					<li><a >Garanzia legale</a></li>
-				</ul>
-			</div>
-		</div>		
-	<hr class="w"></hr>
-		
-	<div class="container">
-		<div style="width: 100%; text-align: center;">
-			<img src="img/logo.png" class="d-inline-block">
-		</div>
-		<ul class="foote_bottom_ul_amrc" style="text-align: center;">
-			<li><a >Australia</a></li>
-			<li><a >Brasile</a></li>
-			<li><a >Canada</a></li>
-			<li><a >Cina</a></li>
-			<li><a >Francia</a></li>
-			<li><a >Germania</a></li>
-			<li><a >Giappone</a></li>
-			<li><a >India</a></li>
-			<li><a >Messico</a></li>
-			<li><a >Paesi Bassi</a></li>
-			<li><a >Polonia</a></li>
-			<li><a >Emirati Arabi Uniti</a></li>
-			<li><a >Regno Unito</a></li>
-			<li><a >Spagna</a></li>
-			<li><a >Singapore</a></li>
-			<li><a >Stati Uniti</a></li>
-			<li><a >Turchia</a></li>
-		</ul>
+			</div>		
 		<hr class="w"></hr>
-		<p class="text-center">Copyright @2022 | <a href="http://fiorentinosimone.altervista.org/" target="_blank">Fiorentino Simone</a></p>
-		<!-- Section: Social media -->
-		<section class="mb-4" style="text-align: center;">
-			<!-- Facebook -->
-			<a class="btn btn-outline-light btn-floating m-1" href="https:facebook.com/Simone.Fiorentino04" role="button"
-			><i class="fab fa-facebook-f"></i
-			></a>
-	
-			<!-- Twitter -->
-			<a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/Simone59576592" role="button"
-			><i class="fab fa-twitter"></i
-			></a>
-	
-			<!-- Google -->
-			<a class="btn btn-outline-light btn-floating m-1" href="mailto:s.fiorentino.1743@vallauri.edu" role="button"
-			><i class="fab fa-google"></i
-			></a>
-	
-			<!-- Instagram -->
-			<a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/simo.fiorentino/" role="button"
-			><i class="fab fa-instagram"></i
-			></a>
-	
-			<!-- Linkedin -->
-			<a class="btn btn-outline-light btn-floating m-1" href="https://it.linkedin.com/" role="button"
-			><i class="fab fa-linkedin-in"></i
-			></a>
-	
-			<!-- Github -->
-			<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Fiorentino-Simone" role="button"
-			><i class="fab fa-github"></i
-			></a>
-		</section>
-	</div>
-	</footer>
-	
-	</div>
+			
+		<div class="container">
+			<div style="width: 100%; text-align: center;">
+				<img src="img/logo.png" class="d-inline-block">
+			</div>
+			<ul class="foote_bottom_ul_amrc" style="text-align: center;">
+				<li><a >Australia</a></li>
+				<li><a >Brasile</a></li>
+				<li><a >Canada</a></li>
+				<li><a >Cina</a></li>
+				<li><a >Francia</a></li>
+				<li><a >Germania</a></li>
+				<li><a >Giappone</a></li>
+				<li><a >India</a></li>
+				<li><a >Messico</a></li>
+				<li><a >Paesi Bassi</a></li>
+				<li><a >Polonia</a></li>
+				<li><a >Emirati Arabi Uniti</a></li>
+				<li><a >Regno Unito</a></li>
+				<li><a >Spagna</a></li>
+				<li><a >Singapore</a></li>
+				<li><a >Stati Uniti</a></li>
+				<li><a >Turchia</a></li>
+			</ul>
+			<hr class="w"></hr>
+			<p class="text-center">Copyright @2022 | <a href="http://fiorentinosimone.altervista.org/" target="_blank">Fiorentino Simone</a></p>
+			<!-- Section: Social media -->
+			<section class="mb-4" style="text-align: center;">
+				<!-- Facebook -->
+				<a class="btn btn-outline-light btn-floating m-1" href="https:facebook.com/Simone.Fiorentino04" role="button"
+				><i class="fab fa-facebook-f"></i
+				></a>
+		
+				<!-- Twitter -->
+				<a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/Simone59576592" role="button"
+				><i class="fab fa-twitter"></i
+				></a>
+		
+				<!-- Google -->
+				<a class="btn btn-outline-light btn-floating m-1" href="mailto:s.fiorentino.1743@vallauri.edu" role="button"
+				><i class="fab fa-google"></i
+				></a>
+		
+				<!-- Instagram -->
+				<a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/simo.fiorentino/" role="button"
+				><i class="fab fa-instagram"></i
+				></a>
+		
+				<!-- Linkedin -->
+				<a class="btn btn-outline-light btn-floating m-1" href="https://it.linkedin.com/" role="button"
+				><i class="fab fa-linkedin-in"></i
+				></a>
+		
+				<!-- Github -->
+				<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Fiorentino-Simone" role="button"
+				><i class="fab fa-github"></i
+				></a>
+			</section>
+		</div>
+		</footer>
+    </div>
 
 
 
@@ -504,7 +346,8 @@
 		<!--LINK A DELLE LIBRERIE IN RETE, li inseriamo dentro il body siccome bisogna seguire DETTAGLIATAMENTE la guida-->
 		<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>	
 		<script src="server/libreria.js"></script>
-		<script src="index.js"></script>	
+        <script src="page.js"></script>
+		<script src="carrello.js"></script>	
 	<!--#endregion -->
 	
 </body>

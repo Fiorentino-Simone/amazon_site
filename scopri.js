@@ -6,17 +6,48 @@ $(document).ready(function(){
     let sezione = window.location.search;
     let tableSezione = sezione.substring(7, sezione.indexOf("&"));
     let categoria;
+    let idUtente;
     if(window.location.search.includes("idUtente")){
         let categoriaAndUtente = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
         categoria = categoriaAndUtente.substring(0, categoriaAndUtente.indexOf("&"));
-        let idUtente = categoriaAndUtente.substring(categoriaAndUtente.indexOf("&")+10, categoriaAndUtente.length);
+        idUtente = categoriaAndUtente.substring(categoriaAndUtente.indexOf("&")+10, categoriaAndUtente.length);
         let values = JSON.parse(window.localStorage.getItem('user' + idUtente));
         let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
         $(".utente").html("Ciao, " + nomeUtente);
         $(".indirizzo").html(values.Indirizzo);
+
+        
     }
     else categoria = sezione.substring(sezione.indexOf("&") + 5, sezione.length).replaceAll("%20"," ").replaceAll("%27","'");
     
+    $(".buttonAccedi").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            $(this).prop({
+                "data-toggle": "modal",
+                "data-target": "#ListeLogout"
+            })
+            $("#ListeLogout").modal("show");
+        }
+        else window.open("login.html","_self");
+    });
+
+    $("#btnLogout").on("click",function(){
+        window.localStorage.removeItem("user"+idUtente);
+        window.open("index.html","_self");
+    })
+
+    let carrelloUser = JSON.parse(window.localStorage.getItem("carrello_user" + idUtente));
+    if(carrelloUser != null){
+        $(".numeroProdotti").eq(0).text(carrelloUser.length);
+    }
+
+    $(".buttonCarrello").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){                
+            window.open("carrello.html?idUtente="+idUtente,"_self");
+        }
+        else window.open("login.html","_self");
+    })  
+
     visualizzaProdottiPerCategoria(tableSezione, categoria);
 
     if(tableSezione == "alimentari") tableSezione = "Alimentazione e cura della casa";

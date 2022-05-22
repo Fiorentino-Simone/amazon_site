@@ -22,8 +22,6 @@ $(document).ready(function(){
     .buttonElettronica div,
     .buttonCucina div`;
 
-    $(".buttonAccedi").prop("href","login.html");
-
     $(buttons).on("mouseenter",function(){
         $(this).css("border","1px solid white");
         if($(this).hasClass("libri")) $(this).css("left","510%");
@@ -75,17 +73,17 @@ $(document).ready(function(){
     
     if(window.location.search.includes("idUtente")){
         let idUtente = window.location.search;
-        idUtente = idUtente.substring(idUtente.indexOf("idUtente") + 9, idUtente.length);
-        console.log("ID UTENTE: ",idUtente);
+        idUser = idUtente.substring(idUtente.indexOf("idUtente") + 9, idUtente.length);
+        console.log("ID UTENTE: ",idUser);
 
-        if(window.localStorage.getItem('user' + idUtente) == null){
-            let request = inviaRichiesta("GET","server/richiediUtente.php",{idUtente});
+        if(window.localStorage.getItem('user' + idUser) == null){
+            let request = inviaRichiesta("GET","server/richiediUtente.php",{idUser});
             request.fail(errore);
             request.done(function(dati){
                 let datiQuery = dati[0];
                 console.log(datiQuery);
                 //salvare l'utente nel session storage 
-                window.localStorage.setItem('user' + idUtente, JSON.stringify(datiQuery));
+                window.localStorage.setItem('user' + idUser, JSON.stringify(datiQuery));
                 let nome = datiQuery.Nominativo.substring(0,datiQuery.Nominativo.indexOf(" "));
                 $(".utente").html("Ciao, " + nome);
                 $(".indirizzo").html(datiQuery.Indirizzo).css("margin-left","5px");;
@@ -97,7 +95,7 @@ $(document).ready(function(){
     let keysLocalStorage = Object.keys(localStorage);
     let userKeys = [];
     for (let i = 0; i < keysLocalStorage.length; i++) {
-        if(keysLocalStorage[i].includes("user")) userKeys.push(keysLocalStorage[i]);
+        if(keysLocalStorage[i].includes("user") && !keysLocalStorage[i].includes("carrello")) userKeys.push(keysLocalStorage[i]);
     }
     if(userKeys.length != 0){
         let user = userKeys[0];
@@ -123,7 +121,18 @@ $(document).ready(function(){
 
     $("#btnLogout").on("click",function(){
         window.localStorage.removeItem("user"+idUser);
-        window.location.reload();
+        window.open("index.html","_self");
     })
-    
+
+    let carrelloUser = JSON.parse(window.localStorage.getItem("carrello_user" + idUser));
+    if(carrelloUser != null){
+        $(".numeroProdotti").eq(0).text(carrelloUser.length);
+    }
+
+    $(".buttonCarrello").eq(0).on("click",function(){
+        if(userActive || window.location.search.includes("idUtente")){
+            window.open("carrello.html?idUtente="+idUser,"_self");
+        }
+        else window.open("login.html","_self");
+    })    
 });

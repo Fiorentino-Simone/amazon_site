@@ -3,7 +3,7 @@
     header('Content-Type: application/json; charset=utf-8'); 
     $con = openConnection();
     
-    $id = $_REQUEST["idUtente"];
+    $id = $_REQUEST["idUser"];
 
     $sql = "SELECT * FROM utenti WHERE Id=$id";
 

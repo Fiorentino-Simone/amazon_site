@@ -5,19 +5,51 @@ const ITEMS = 5;
 $(document).ready(function(){
     let options = window.location.search;
     let valueItemSelected;
+    let nome;
     if(window.location.search.includes("&")){
         valueItemSelected = options.substring(5, options.indexOf("&"));
-        let nome = options.substring(options.indexOf("&")+10,options.length);
+        nome = options.substring(options.indexOf("&")+10,options.length);
         let values = JSON.parse(window.localStorage.getItem('user' + nome));
         let nomeUtente = values.Nominativo.substring(0,values.Nominativo.indexOf(" "));
         $(".utente").html("Ciao, " + nomeUtente);
         $(".indirizzo").html(values.Indirizzo);
+
+        
     }
     else valueItemSelected = options.substring(5, options.length);
     console.log(valueItemSelected);
     visualizzaProdotti(valueItemSelected);
     let table = valueItemSelected;
     let itemCorrente = valueItemSelected;
+
+    $(".buttonAccedi").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            $(this).prop({
+                "data-toggle": "modal",
+                "data-target": "#ListeLogout"
+            })
+            $("#ListeLogout").modal("show");
+        }
+        else window.open("login.html","_self");
+    });
+
+    $("#btnLogout").on("click",function(){
+        window.localStorage.removeItem("user"+nome);
+        window.open("index.html","_self");
+    })
+
+    let carrelloUser = JSON.parse(window.localStorage.getItem("carrello_user" + nome));
+    if(carrelloUser != null){
+        $(".numeroProdotti").eq(0).text(carrelloUser.length);
+    }
+
+
+    $(".buttonCarrello").eq(0).on("click",function(){
+        if(window.location.search.includes("idUtente")){                
+            window.open("carrello.html?idUtente="+nome,"_self");
+        }
+        else window.open("login.html","_self");
+    })  
     
 
 
@@ -45,7 +77,7 @@ $(document).ready(function(){
                     icon: 'warning',
                     title: 'Oops...',
                     text: "Nessun risultato presente, prova a cambiare ricerca",
-                    footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
+                    footer: '<a>Se riscontri problematiche, contattami !</a>'
                 })
             }
         });
@@ -379,7 +411,7 @@ $(document).ready(function(){
                 icon: 'error',
                 title: 'Oops...',
                 text: "Nessun risultato presente, prova a cambiare i filtri",
-                footer: '<a href="#">Se riscontri problematiche, contattami !</a>'
+                footer: '<a>Se riscontri problematiche, contattami !</a>'
             })
         }
         else creaCards(newCategorie,  prodottiFiltrati3, true);
