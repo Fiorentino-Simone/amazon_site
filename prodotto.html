@@ -83,7 +83,7 @@
                 </a> 
             </li>
             <li class="nav-item d-flex">
-                <a class="buttonOrdini">
+                <a class="buttonOrdini btnOrdini">
                     <div>
                         <span class="w">Resi</span>
                         <span style="font-weight: bold;" class="w">e Ordini</span>
@@ -268,6 +268,31 @@
             <button type="button" class="btn" style="background-color: #f1f1f4;">Aggiungi alla lista</button>
             <br>
             <button type="button" class="btn" style="background-color: #f1f1f4;">Condividi il prodotto</button>
+        </div>
+        <div class="containerRecensioni">
+            <h4>Recensioni sul prodotto: </h4>
+            <br>
+            <div class="containerUser">
+            </div>
+            <br>
+            <div class="divInserisciRecensione" style="display: none;">
+                <h4>Scrivi tu una recensione sul prodotto! </h4>
+                <form>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nome Utente: </span>
+                        <input type="text" class="form-control" id="user" placeholder="Scrivi il tuo nome" aria-label="Username">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Descrizione: </span>
+                        <textarea class="form-control" id="descrizioneUser" placeholder="Scrivi la tua descrizione" aria-label="Username"></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Numero di stelle: </span>
+                        <input class="form-control" id="stelleUser" type="number" id="inputStelle" value="1" min="1" max="5" step="1"/>
+                    </div>
+                    <button type="button" id="inviaRecensione" class="btn btn-secondary">Invia Recensione</button>
+                </form>
+            </div>
         </div>
     </div>
 

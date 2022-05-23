@@ -1,17 +1,18 @@
 <?php 
     require("MySQLi.php");
     header('Content-Type: application/json; charset=utf-8'); 
+    /*$_POST ? '' : $_POST = json_decode(trim(file_get_contents('php://input')), true);
+    var_dump($_POST);*/
 
 
     $prodotti = $_REQUEST["prodotti"];
     $id = $_REQUEST["idUser"];
-    $descrizione = $_REQUEST['descrizione'];
+    $descrizione = json_encode($_REQUEST["descrizione"]);
     $prezzo = $_REQUEST['prezzo'];
     $indirizzo = $_REQUEST["indirizzo"];
 
     $con = openConnection();
 
-    //funziona ma lavorare con JSON
     $sql = "INSERT INTO acquisti (IdUtente, QuantitàProdotti, Descrizione, PrezzoTotale, Indirizzo_Spedizione) VALUES ($id, $prodotti, '$descrizione', $prezzo, '$indirizzo')";
     
     if(eseguiQuery($con, $sql)){

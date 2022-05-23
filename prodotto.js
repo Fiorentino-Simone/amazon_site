@@ -4,7 +4,7 @@ const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 $(document).ready(function(){
-    $("input[type='number']").inputSpinner()
+    $("#inputQuantità").inputSpinner();
 
     let prodotto = window.location.search;
     let userActive = false;
@@ -56,7 +56,17 @@ $(document).ready(function(){
         else window.open("login.html","_self");
     })  
 
+    $(".btnOrdini").on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            window.open("ordini.html?idUtente="+idUtente,"_self");
+        }
+        else window.open("login.html","_self");
+    }) 
+
+    let tabella = catProdotto;
+    let idProduct = parseInt(idProdotto);
     visualizzaProdotto(catProdotto, parseInt(idProdotto));
+    visualizzaRecensioni(catProdotto, parseInt(idProdotto));
 
     if(catProdotto == "alimentari") catProdotto = "Alimentazione e cura della casa";
     if(catProdotto == "auto") catProdotto = "Auto e Moto - Parti e Accessori";
@@ -202,6 +212,49 @@ $(document).ready(function(){
         });
     }
 
-    
-    
+    function visualizzaRecensioni(table, id){
+        let request = inviaRichiesta("GET", "server/richiediRecensioni.php", {table,id});
+        request.fail(errore);
+        request.done(function(data){
+            let container = $(".containerRecensioni .containerUser");            
+            if(data.length != 0) {
+                for (let recensioni of data) {
+                    let divUser = $("<div>").appendTo(container).css("display","flex");
+                    divUser.append($("<i>").addClass("fa-solid fa-user"));
+                    divUser.append($("<span>").css("margin-left","15px").text("Utente di nome: ").append($("<span>").text(recensioni.NomeUser)));
+                    let divUserParent = $("<div>").appendTo(container);
+                    divUserParent.append($("<div>").text("Stelle assegnate: ").append($("<img>").prop({
+                        "src":"img/"+recensioni.Stelle+"_stella.png",
+                        "height" : "40"
+                    })));
+                    divUserParent.append($("<div>").text("Descrizione prodotto:  ").append($("<span>").text(recensioni.Descrizione)));
+                    divUserParent.append($("<br>"));
+                }     
+                $(".divInserisciRecensione").css("display","initial");
+            }
+            else{
+                container.children("br").remove();
+                container.append($("<div>").html("Nessuna recensioni disponibile"));
+                $(".divInserisciRecensione").css("display","initial");
+            }           
+        });
+    }
+
+    $("#inviaRecensione").on("click",function(){
+        let nomeUser = $("#user").val();
+        let descrizioneUser = $("#descrizioneUser").val();
+        let stelle = parseInt($("#stelleUser").val());
+        if(nomeUser != "" && descrizioneUser != ""){
+            let request = inviaRichiesta("GET","server/scriviRecensione.php",{tabella, idProduct, nomeUser,descrizioneUser,stelle});
+            request.fail(errore);
+            request.done(function(data){
+                console.log(data);
+                if(data.ris == "ok"){
+                    alert("Recensione inserita correttamente!");
+                    window.location.reload();
+                }
+            });
+        }
+        else alert("Compila i campi prima di inviare");
+    })
 });

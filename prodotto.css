@@ -251,3 +251,14 @@ tr > td:first-of-type{
   margin-right: 10%;
   margin-top: 2%;
 }
+
+
+.containerRecensioni{
+  display: grid;
+  width: 75%;
+  position: absolute;
+  top:80%;
+  border: 1px solid rgb(213, 209, 209);
+  left: 0%;
+  padding-left: 2%;
+}

@@ -50,6 +50,13 @@ $(document).ready(function(){
         }
         else window.open("login.html","_self");
     })  
+
+    $(".btnOrdini").on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            window.open("ordini.html?idUtente="+nome,"_self");
+        }
+        else window.open("login.html","_self");
+    }) 
     
 
 

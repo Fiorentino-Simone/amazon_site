@@ -284,7 +284,7 @@ footer p {
   padding:0px 0px 5px 0px;
 }
 .footerUl li a{ 
-  color:#CCC;
+  color:#CCC !important;
 }
 .footerUl li a:hover{ 
   color:#fff;
@@ -303,7 +303,7 @@ footer p {
   display:inline;
 }
 .foote_bottom_ul_amrc li a { 
-  color:#999;
+  color:#999 !important;
   margin:0 12px;
 }
 /*#endregion*/

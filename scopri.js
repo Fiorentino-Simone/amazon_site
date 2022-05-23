@@ -46,7 +46,14 @@ $(document).ready(function(){
             window.open("carrello.html?idUtente="+idUtente,"_self");
         }
         else window.open("login.html","_self");
-    })  
+    })
+    
+    $(".btnOrdini").on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            window.open("ordini.html?idUtente="+idUtente,"_self");
+        }
+        else window.open("login.html","_self");
+    }) 
 
     visualizzaProdottiPerCategoria(tableSezione, categoria);
 

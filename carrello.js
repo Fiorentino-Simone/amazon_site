@@ -32,10 +32,18 @@ $(document).ready(function(){
         }
         else window.open("login.html","_self");
     })  
+
+    $(".btnOrdini").on("click",function(){
+        if(window.location.search.includes("idUtente")){
+            window.open("ordini.html?idUtente="+idUser,"_self");
+        }
+        else window.open("login.html","_self");
+    }) 
+    
     let elemento = 0;
     let prezzo = 0;
     let prodotti = 0;
-    let descrizione = "";
+    let descrizione = {};
     
 
     visualizzaCarrello();
@@ -55,7 +63,7 @@ $(document).ready(function(){
                 .append($("<h7>").addClass("card-title descrizione bold").text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",function(){
                     visualizzaProdotto(prodotto["table"]);
                 }))));
-                descrizione += prodotto["Descrizione Prodotto"];
+                descrizione[elemento] = prodotto["Descrizione Prodotto"];
                 let divCard = $(".card-body").eq(elemento);
                 let divDescrizione = $("<div>").addClass("card-text").text("di ").append($("<span>").addClass("marca")).appendTo(divCard);
                 divDescrizione.text(prodotto["marca"])
@@ -77,7 +85,7 @@ $(document).ready(function(){
             }
             $(".numeroProdotti").text(elemento);
             $("<div>").css({"margin-left":"50%","width": "fit-content"}).appendTo("#cardsArticoli").append(
-                $("<h5>").text("Costo totale: " + prezzo + "€")
+                $("<h5>").text("Costo totale: " + prezzo.toFixed(2) + "€")
             ).append($("<button>").addClass("btn").text("COMPRA ADESSO").on("click",compraProdotti));
             
         }
@@ -119,10 +127,12 @@ $(document).ready(function(){
             request.fail(errore);
             request.done(function(){
                 console.log("INVIATA");
-            })*/
+            })
             let user = JSON.parse(window.localStorage.getItem("user" + idUser));
             let indirizzo = user.Indirizzo;
-            console.log({prodotti,idUser,descrizione,prezzo, indirizzo});
+            //console.log({prodotti,idUser,descrizione,prezzo, indirizzo});
+            console.log(descrizione);
+            descrizione = JSON.stringify(descrizione);
             let request = inviaRichiesta("GET","server/aggiungiAcquisto.php", {prodotti,idUser,descrizione,prezzo, indirizzo});
             request.fail(errore);
             request.done(function(ris){
@@ -134,9 +144,7 @@ $(document).ready(function(){
                     window.localStorage.removeItem('carrello_user'+idUser);
                     window.open("index.html?idUtente="+idUser,"_self");
                 }
-            })
-
-            
+            })*/
         }
     }
 
