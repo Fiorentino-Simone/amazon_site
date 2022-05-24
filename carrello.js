@@ -111,24 +111,24 @@ $(document).ready(function(){
         }
 
         function compraProdotti(){
-            /*let prodotti = "";
+            let prodotti = "";
             for (let item of carrelloUser) {
                 prodotti += item["Descrizione Prodotto"] + "\n";
             }
             let user = JSON.parse(window.localStorage.getItem("user" + idUser));
             let email = user.Email;
             let nome = user.Nominativo;
-            let request = inviaRichiesta("GET","server/inviaEmail.php", {prodotti, nome, email});
+            /*let request = inviaRichiesta("GET","server/inviaEmail.php", {prodotti, nome, email});
             request.fail(errore);
             request.done(function(ris){
                 console.log(ris);
-            })
-            let request = inviaRichiesta("GET","server/inviaEmail.php");
-            request.fail(errore);
-            request.done(function(){
-                console.log("INVIATA");
             })*/
-            let user = JSON.parse(window.localStorage.getItem("user" + idUser));
+            let request = inviaRichiestaEmail("GET","server/inviaEmail.php");
+            request.fail(errore);
+            request.done(function(data){
+                console.log(data);
+            })
+            /*let user = JSON.parse(window.localStorage.getItem("user" + idUser));
             let indirizzo = user.Indirizzo;
             descrizione = JSON.stringify(descrizione);
             let request = inviaRichiesta("GET","server/aggiungiAcquisto.php", {prodotti,idUser,descrizione,prezzo, indirizzo});
@@ -143,7 +143,7 @@ $(document).ready(function(){
                         window.open("index.html?idUtente="+idUser,"_self");
                     });
                 }
-            })
+            })*/
         }
     }
 

@@ -2,6 +2,9 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     require 'composer/vendor/autoload.php';
+
+    header('Content-Type: text/plain; charset=utf-8'); 
+
     
     $mail = new PHPMailer(TRUE);
     $mail->isSMTP();                                            
@@ -28,8 +31,10 @@
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+        echo("Mailer Error: " . $mail->ErrorInfo);
     } else {
-        echo "Message has been sent";
+        http_response_code(200);
+        $rs = json_encode("Message has been sent");
+        echo($rs);
     }
 ?>
