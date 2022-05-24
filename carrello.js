@@ -43,7 +43,7 @@ $(document).ready(function(){
     let elemento = 0;
     let prezzo = 0;
     let prodotti = 0;
-    let descrizione = {};
+    let descrizione = "";
     
 
     visualizzaCarrello();
@@ -61,9 +61,9 @@ $(document).ready(function(){
                 .append($("<img>").addClass("card-img-top immagine").prop("src",prodotto["Immagine"])))
                 .append($("<div>").addClass("card-body")
                 .append($("<h7>").addClass("card-title descrizione bold").text(prodotto["Descrizione Prodotto"]).prop("id",prodotto.IDProdotto).on("click",function(){
-                    visualizzaProdotto(prodotto["table"]);
+                    visualizzaProdotto(prodotto["table"],prodotto.IDProdotto);
                 }))));
-                descrizione[elemento] = prodotto["Descrizione Prodotto"];
+                descrizione += prodotto["table"]+";"+prodotto.IDProdotto + "&";
                 let divCard = $(".card-body").eq(elemento);
                 let divDescrizione = $("<div>").addClass("card-text").text("di ").append($("<span>").addClass("marca")).appendTo(divCard);
                 divDescrizione.text(prodotto["marca"])
@@ -127,11 +127,9 @@ $(document).ready(function(){
             request.fail(errore);
             request.done(function(){
                 console.log("INVIATA");
-            })
+            })*/
             let user = JSON.parse(window.localStorage.getItem("user" + idUser));
             let indirizzo = user.Indirizzo;
-            //console.log({prodotti,idUser,descrizione,prezzo, indirizzo});
-            console.log(descrizione);
             descrizione = JSON.stringify(descrizione);
             let request = inviaRichiesta("GET","server/aggiungiAcquisto.php", {prodotti,idUser,descrizione,prezzo, indirizzo});
             request.fail(errore);
@@ -140,17 +138,17 @@ $(document).ready(function(){
                     Swal.fire({
                         title : 'Acquistati!',
                         showCancelButton: true,
+                    }).then(function() {
+                        window.localStorage.removeItem('carrello_user'+idUser);
+                        window.open("index.html?idUtente="+idUser,"_self");
                     });
-                    window.localStorage.removeItem('carrello_user'+idUser);
-                    window.open("index.html?idUtente="+idUser,"_self");
                 }
-            })*/
+            })
         }
     }
 
 
-    function visualizzaProdotto(table){
-        let idProdotto = $(this).prop("id");
+    function visualizzaProdotto(table, idProdotto){
         let query = "prodotto.html?cat="+table+"&id="+idProdotto;
         query += "&idUtente=" + idUser;
         window.open(query, "_self");

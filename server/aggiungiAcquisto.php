@@ -1,13 +1,11 @@
 <?php 
     require("MySQLi.php");
     header('Content-Type: application/json; charset=utf-8'); 
-    /*$_POST ? '' : $_POST = json_decode(trim(file_get_contents('php://input')), true);
-    var_dump($_POST);*/
 
 
     $prodotti = $_REQUEST["prodotti"];
     $id = $_REQUEST["idUser"];
-    $descrizione = json_encode($_REQUEST["descrizione"]);
+    $descrizione = $_REQUEST["descrizione"];
     $prezzo = $_REQUEST['prezzo'];
     $indirizzo = $_REQUEST["indirizzo"];
 

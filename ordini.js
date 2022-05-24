@@ -58,19 +58,37 @@ $(document).ready(function(){
             else{
                 let elemento = 0;
                 for (let prodotto of dati) {
-                    console.log(prodotto);
-                    let prodotti = prodotto.Descrizione.split('|');
+                    let divCard = "";
+                    let prodotti = prodotto.Descrizione.substring(1,prodotto.Descrizione.length-1);
+                    prodotti = prodotti.split('&');
                     console.log(prodotti);
                     $("<div>").appendTo(cardsArticoli).css("width","80%")
                     .append($("<div>").addClass("card")
                     .append($("<div>").addClass("card-body")
                     .append($("<h4>").addClass("card-title descrizione bold").html("Ordine numero: " + ++elemento))));
                     elemento--;
-                    let divCard = $(".card-body").eq(elemento);
+                    divCard = $(".card-body").eq(elemento);
                     $("<h6>").html("Prodotti acquistati: ").appendTo(divCard);
+                    let indice = 0;
+                    let visualizza = false;
+                    let indexInterno = 0;
                     for (let item of prodotti) {
-                        $("<li>").appendTo(divCard)
-                        .html(item);
+                        if(indice != prodotti.length-1){
+                            let val = item.split(';');
+                            let tabelle = val[0];
+                            let idProdottos = parseInt(val[1]);
+                            console.log(tabelle, idProdottos);
+                            let request = inviaRichiesta("GET","server/richiediProdottoDescrizione.php",{tabelle,idProdottos});
+                            request.fail(errore);
+                            request.done(function(data){
+                                if(indexInterno == prodotti.length-2) visualizza=true;
+                                $("<li>").appendTo(divCard)
+                                .html(data[0]["Descrizione Prodotto"]);
+                                if(visualizza) creazioneProdotto(divCard, prodotto.Restituito,  prodotto.IdTransazione);
+                                indexInterno++;
+                            })
+                        }
+                        indice++;
                     }
                     let price = parseFloat(prodotto["PrezzoTotale"]).toFixed(2);
                     price = price.toString().replace(".",",");
@@ -79,17 +97,21 @@ $(document).ready(function(){
                         "width" : "100%",
                         "text-align" : "center",
                     });
-                    if(prodotto.Restituito == 0){
-                        $("<button>").html("Vuoi restituire i prodotti?").appendTo(divCard).addClass("btn").prop("id",prodotto.IdTransazione).css({"text-align":"center", "padding-left" : "0"}).on("click", richiediOrdine);
-                    }
-                    else{
-                        $("<h5>").text("Prodotti già restituiti").appendTo(divCard).css("color","#0f0");
-                    }
+                    
                     elemento++;
                 }
             }
         })
 
+        function creazioneProdotto(divCard, Restituito, IdTransazione){
+            if(Restituito == 0){
+                $("<button>").html("Vuoi restituire i prodotti?").appendTo(divCard).addClass("btn").prop("id",
+                IdTransazione).css({"text-align":"center", "padding-left" : "0"}).on("click", richiediOrdine);
+            }
+            else{
+                $("<h5>").text("Prodotti già restituiti").appendTo(divCard).css({"color": "#0f0"});
+            }
+        }
 
         function richiediOrdine(){
             Swal.fire({
