@@ -94,6 +94,10 @@ $(document).ready(function(){
 		request.done(function(prod){
             let prodotto = prod[0];
             console.log(prodotto);
+            if(parseInt(prodotto["Disponibilità"]) == 0){
+                $("#btnAcquista").prop("disabled",true);
+                $("#btnAcquistaOra").prop("disabled",true);
+            } 
             $(".image").prop("src",prodotto.Immagine).css("width","30%");
             $(".title").text(prodotto["Descrizione Prodotto"]);
             $(document).prop('title', prodotto["Descrizione Prodotto"]);
@@ -167,7 +171,14 @@ $(document).ready(function(){
             if(prodotto["Disponibilità"]!=1) $(".disponibilitàTesto").text("Non disponibile").css("color","red");
         
 
-            $("#btnAcquista").on("click",function(){
+            $("#btnAcquista").on("click",compra);
+            $("#btnAcquistaOra").on("click",compra);
+
+            $("#inputQuantità").on("change",function(){
+                $("#btnAcquista").html(((parseFloat(prodotto["Prezzo"]).toFixed(2)) * $(this).val())  + "€" + " -- Aggiungi al carrello");
+            })
+            
+            function compra(){
                 if(userActive){
                     if(window.localStorage.getItem('carrello_user' + idUtente) == null){
                         //devo creare il carrello per quel utente
@@ -192,7 +203,7 @@ $(document).ready(function(){
                         footer: '<a>Se riscontri problematiche, contattami !</a>'
                     })
                 }
-            })
+            }
         
             function aggiungiAlCarrello(){
                 let vect = {

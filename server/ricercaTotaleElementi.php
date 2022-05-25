@@ -4,9 +4,9 @@
     $con = openConnection();
     
     $table = $_REQUEST["table"];
-    $categoria = $_REQUEST["categoria"];
 
-    $sql = "SELECT * FROM $table WHERE CategoriaPrincipale LIKE '%$categoria%'";
+    $sql = "SELECT idProdotto, `Descrizione Prodotto` FROM $table";
+
     $rs = eseguiQuery($con, $sql);
     $json = json_encode($rs);
     http_response_code(200); //200 --> andato tutto bene

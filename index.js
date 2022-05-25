@@ -1,5 +1,8 @@
 "use strict";
 
+let tables = ["abbigliamento","alimentari","auto","bellezza","cancelleria","casa","cd","dispositiviamazon","elettronica","faidate","film","giardinaggio","giochi","gioielli","grandielettrodomestici","handmade"]
+
+
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
@@ -107,6 +110,63 @@ $(document).ready(function(){
         idUser = values.Id;
         console.log(idUser);
     }
+
+    $("#searchInput").on("click",function(){
+        let val = $("#inputSearch").val();
+        if(val.length >= 4){
+            let descrizioni = {};
+            let indici = {};
+            let i = 0;
+            for (let table of tables) {
+                let request = inviaRichiesta("GET","server/ricercaTotaleElementi.php",{table});
+                request.fail(errore);
+                request.done(function(data){
+                    let vect1 = [];
+                    let vect2 = [];
+                    for(let item of data){
+                        vect1.push(item["Descrizione Prodotto"]);
+                        vect2.push(item["idProdotto"]);
+                    } 
+                    descrizioni[table] = vect1;
+                    indici[table] = vect2;
+                    if(i==tables.length-1) {
+                        ricerca(descrizioni, indici);
+                    }
+                    i++;
+                });
+            }
+        }
+
+        function ricerca(descrizioni, indici){
+            console.log(val);
+            let corrispondenze = {};
+            for (let tabella of tables) {
+                let vect = [];
+                for (let i = 0; i < descrizioni[tabella].length; i++) {
+                    if((descrizioni[tabella][i].toUpperCase()).includes(val.toUpperCase())){
+                        let element = parseInt(indici[tabella][i]);
+                        vect.push(element);
+                    }
+                }
+                if(vect.length != 0) corrispondenze[tabella] = vect;
+            }
+            if(Object.keys(corrispondenze).length == 0){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Nessun elemento trovato',
+                    footer: '<a>Se hai dei dubbi contattami</a>'
+                })
+            }
+            else {
+                window.sessionStorage.setItem(val, JSON.stringify(corrispondenze));
+                if(userActive || window.location.search.includes("idUtente")){
+                    window.open("ricercaTotale.html?key="+val+"&idUtente="+idUser,"_self");
+                }
+                else window.open("ricercaTotale.html?key="+val,"_self");
+            }
+        }
+    })
 
     $(".buttonAccedi").eq(0).on("click",function(){
         if(userActive || window.location.search.includes("idUtente")){
