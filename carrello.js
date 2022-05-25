@@ -111,27 +111,33 @@ $(document).ready(function(){
         }
 
         function compraProdotti(){
-            let prodotti = "";
-            for (let item of carrelloUser) {
-                prodotti += item["Descrizione Prodotto"] + "\n";
-            }
             let user = JSON.parse(window.localStorage.getItem("user" + idUser));
             let email = user.Email;
+            let indirizzo = user.Indirizzo;
             let nome = user.Nominativo;
-            /*let request = inviaRichiesta("GET","server/inviaEmail.php", {prodotti, nome, email});
-            request.fail(errore);
-            request.done(function(ris){
-                console.log(ris);
-            })*/
-            let request = inviaRichiestaEmail("GET","server/inviaEmail.php");
+
+            let html = `<h1>Acquisto completato.</h1> 
+            <h4>Riepilogo ordine: </h4><div>
+            <ul>`
+            for (let item of carrelloUser) {
+                html += "<li>" +  item["Descrizione Prodotto"] + "</li>"
+            }
+            html+=`</ul>
+            <h4>Costo totale: ${prezzo}</h4>
+            <h4>Indirizzo di spedizione: ${indirizzo} </h4>
+            </div>
+            <br>
+            <span style='font-weigth: bold'>Continua ad acquistare su amazon</span>
+            <img src='https://www.ilquotidianoitaliano.com/wp-content/uploads/2021/12/amazon-1.jpg'>`
+            
+            let request  = inviaRichiestaEmail("GET","server/inviaEmail.php",{html, email, nome});
             request.fail(errore);
             request.done(function(data){
-                console.log(data);
+                console.log("Inviata");
             })
-            /*let user = JSON.parse(window.localStorage.getItem("user" + idUser));
-            let indirizzo = user.Indirizzo;
+
             descrizione = JSON.stringify(descrizione);
-            let request = inviaRichiesta("GET","server/aggiungiAcquisto.php", {prodotti,idUser,descrizione,prezzo, indirizzo});
+            request = inviaRichiesta("GET","server/aggiungiAcquisto.php", {prodotti,idUser,descrizione,prezzo, indirizzo});
             request.fail(errore);
             request.done(function(ris){
                 if(ris.ris == "ok"){
@@ -143,7 +149,9 @@ $(document).ready(function(){
                         window.open("index.html?idUtente="+idUser,"_self");
                     });
                 }
-            })*/
+            })
+            
+            
         }
     }
 

@@ -43,6 +43,6 @@ function inviaRichiestaEmail(method, url, parameters={}) {
 		"type": method,   
 		"contentType": contentType, 
         "dataType": "text",   // default      
-        "timeout": 5000,      // default 
+        "timeout": 1500000,      // default 
     });	
 }

@@ -5,6 +5,7 @@
 
     header('Content-Type: text/plain; charset=utf-8'); 
 
+    $html = $_REQUEST["html"];
     
     $mail = new PHPMailer(TRUE);
     $mail->isSMTP();                                            
@@ -19,16 +20,15 @@
         'verify_peer' => false,
         )
     );
-    $mail->IsHTML(true);
     $mail->Username = "s.fiorentino.1743@vallauri.edu";
     $mail->Password = "Fiorentino08@";
     $mail->SetFrom("s.fiorentino.1743@vallauri.edu", "AMAZON");
-    $mail->AddAddress("simo.fiorentino04@gmail.com");
+    $mail->AddAddress($_REQUEST["email"], $_REQUEST["nome"]);
 
     //Content
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'Acquisto completato';
+    $mail->Body    = $html;
+    $mail->IsHTML(true);
 
     if(!$mail->send()) {
         echo("Mailer Error: " . $mail->ErrorInfo);
