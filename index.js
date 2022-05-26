@@ -1,6 +1,6 @@
 "use strict";
 
-let tables = ["abbigliamento","alimentari","auto","bellezza","cancelleria","casa","cd","dispositiviamazon","elettronica","faidate","film","giardinaggio","giochi","gioielli","grandielettrodomestici","handmade"]
+let tables = ["abbigliamento","alimentari","auto","bellezza","cancelleria","casa","cd","dispositiviamazon","elettronica","faidate","film","giardinaggio","giochi","gioielli","grandielettrodomestici","handmade","illuminazione","usato","libri"]
 
 
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -202,5 +202,19 @@ $(document).ready(function(){
             window.open("ordini.html?idUtente="+idUser,"_self");
         }
         else window.open("login.html","_self");
-    })    
+    }) 
+
+    $(".card-link").on("click",function(){
+        let itemSelected = $(this).prop("id");
+        let options =  "?cat="+itemSelected;
+        if(window.location.search.includes("idUtente") || userActive) {
+            if(window.location.search.includes("idUtente")) {
+                let idUtente = window.location.search;
+                idUtente = idUtente.substring(idUtente.indexOf("idUtente") + 9,idUtente.length);
+                options += "&idUtente="+idUtente;
+            }
+            else if(userActive) options += "&idUtente="+idUser;
+        }
+        window.open("visualizzazione.html" + options, "_self");
+    })
 });
