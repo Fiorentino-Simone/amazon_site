@@ -20,8 +20,8 @@
         'verify_peer' => false,
         )
     );
-    $mail->Username = "s.fiorentino.1743@vallauri.edu";
-    $mail->Password = "Fiorentino08@";
+    $mail->Username = "s.fiorentino.1743"; //YOUR MAIL COMPLETELY
+    $mail->Password = "YOUR PASSWORD"; //YOUR PASSWORD OF YOUR MAIL ACCOUNT
     $mail->SetFrom("s.fiorentino.1743@vallauri.edu", "AMAZON");
     $mail->AddAddress($_REQUEST["email"], $_REQUEST["nome"]);
 
